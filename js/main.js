@@ -44,7 +44,7 @@
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(110, 231, 255, 0.5)';
+        ctx.fillStyle = 'rgba(10, 10, 10, 0.35)';
         ctx.fill();
       }
     }
@@ -64,7 +64,7 @@
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(110, 231, 255, ${alpha})`;
+            ctx.strokeStyle = `rgba(10, 10, 10, ${alpha})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -176,9 +176,11 @@
       const id = link.getAttribute('href').slice(1);
       const section = document.getElementById(id);
       if (section && scrollY >= section.offsetTop && scrollY < section.offsetTop + section.offsetHeight) {
-        link.style.color = 'var(--accent)';
+        link.style.color = 'var(--ink)';
+        link.style.fontWeight = '700';
       } else {
         link.style.color = '';
+        link.style.fontWeight = '';
       }
     });
   });
