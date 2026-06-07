@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Digital Archive — 软件工程师、AI 探索者与知识管理实践者的个人档案馆。" />
-  <title>Digital Archive · Windy</title>
+  <meta name="description" content="Windy — Digital Archive. 软件工程师、AI 探索者与知识管理实践者。" />
+  <title>WINDY · Digital Archive</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -16,9 +16,9 @@
       <filter id="halftone" x="0" y="0" width="100%" height="100%">
         <feColorMatrix type="saturate" values="0" />
         <feComponentTransfer>
-          <feFuncR type="discrete" tableValues="0 0.25 0.5 0.75 1" />
-          <feFuncG type="discrete" tableValues="0 0.25 0.5 0.75 1" />
-          <feFuncB type="discrete" tableValues="0 0.25 0.5 0.75 1" />
+          <feFuncR type="discrete" tableValues="0 0.2 0.4 0.6 0.8 1" />
+          <feFuncG type="discrete" tableValues="0 0.2 0.4 0.6 0.8 1" />
+          <feFuncB type="discrete" tableValues="0 0.2 0.4 0.6 0.8 1" />
         </feComponentTransfer>
       </filter>
     </defs>
@@ -26,287 +26,150 @@
 
   <div class="paper-grain" aria-hidden="true"></div>
 
-  <div class="archive">
-    <!-- Column 1: Hero + About + Work Index -->
-    <aside class="col col-left">
-      <header class="hero" id="hero">
-        <div class="hero-meta">
-          <span class="meta-label">Vol. 001</span>
-          <span class="meta-label">Editorial</span>
-        </div>
+  <div class="site">
+    <!-- Header -->
+    <header class="site-header">
+      <a href="#" class="brand">WINDY<span class="brand-dot">.</span></a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="#about">ABOUT</a>
+        <a href="#projects">PROJECTS</a>
+        <a href="#writing">WRITING</a>
+        <a href="#reading">READING</a>
+        <a href="#notes">NOTES</a>
+        <a href="#timeline">TIMELINE</a>
+      </nav>
+      <a href="https://github.com/abcdzyone" target="_blank" rel="noopener" class="btn-github">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GITHUB
+      </a>
+    </header>
 
-        <div class="hero-body">
-          <div class="hero-text">
-            <h1 class="hero-title">DIGITAL<br />ARCHIVE<span class="title-dot">.</span></h1>
-            <ul class="hero-roles">
-              <li>软件工程师</li>
-              <li>AI 探索者</li>
-              <li>知识管理实践者</li>
-            </ul>
-            <ul class="hero-taglines">
-              <li>构建系统</li>
-              <li>记录思考</li>
-              <li>探索未来</li>
-            </ul>
-          </div>
-
-          <figure class="hero-portrait">
-            <div class="portrait-frame">
-              <img
-                src="https://avatars.githubusercontent.com/u/45551140?v=4"
-                alt="Windy 肖像"
-                class="portrait-img"
-                width="200"
-                height="260"
-              />
-              <div class="portrait-halftone" aria-hidden="true"></div>
-            </div>
-          </figure>
-        </div>
-      </header>
-
-      <section class="section about" id="about">
-        <h2 class="section-label">001 · ABOUT</h2>
-        <p class="about-lead">我关注什么？</p>
-        <div class="about-columns">
-          <div class="about-col">
-            <h3>软件工程</h3>
-            <p>构建可靠、可维护的系统，追求工程卓越与代码品质。</p>
-          </div>
-          <div class="about-col">
-            <h3>人工智能</h3>
-            <p>探索大模型与 Agent 技术，将 AI 融入开发工作流。</p>
-          </div>
-          <div class="about-col">
-            <h3>知识管理</h3>
-            <p>设计个人知识库，连接阅读、思考与输出的完整链路。</p>
-          </div>
-          <div class="about-col">
-            <h3>数字生活</h3>
-            <p>自动化日常流程，用工具释放创造力与时间。</p>
-          </div>
-          <div class="about-col">
-            <h3>自动化工具</h3>
-            <p>开发效率脚本与工具集，减少重复劳动。</p>
-          </div>
-          <div class="about-col">
-            <h3>阅读与写作</h3>
-            <p>持续输入与输出，记录技术观察与思考轨迹。</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section work-index" id="projects">
-        <h2 class="section-label">FEATURED WORK</h2>
-        <div class="work-cards">
-          <a href="#work-01" class="work-card">
-            <span class="work-num">01</span>
-            <span class="work-name">AI Agent Lab</span>
-            <span class="work-desc">探索 AI Agent 架构与工具链集成</span>
-          </a>
-          <a href="#work-02" class="work-card">
-            <span class="work-num">02</span>
-            <span class="work-name">Knowledge System</span>
-            <span class="work-desc">个人知识管理体系与工具实践</span>
-          </a>
-          <a href="#work-03" class="work-card">
-            <span class="work-num">03</span>
-            <span class="work-name">Automation Toolkit</span>
-            <span class="work-desc">开发效率自动化脚本与工具集</span>
-          </a>
-          <a href="#work-04" class="work-card">
-            <span class="work-num">04</span>
-            <span class="work-name">Open Source Projects</span>
-            <span class="work-desc">开源贡献与 side project 集合</span>
-          </a>
-        </div>
-      </section>
-    </aside>
-
-    <!-- Column 2: Featured Work + Reading + Articles -->
-    <main class="col col-center">
-      <section class="section work-detail">
-        <article class="work-feature" id="work-01">
-          <span class="work-num-lg">01</span>
-          <h2 class="work-title">AI Agent Lab</h2>
-          <p class="work-body">
-            实验性 AI Agent 开发实验室，探索 LLM 驱动的自主任务执行、
-            工具调用与多 Agent 协作。涵盖 Cursor Agent、MCP 协议集成、
-            以及面向开发者的 Agent 工作流设计。
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero-left">
+        <p class="hero-since">// SINCE 2020</p>
+        <h1 class="hero-title">DIGITAL ARCHIVE</h1>
+        <p class="hero-tagline">构建系统 · 记录思考 · 探索未来</p>
+        <hr class="hero-rule" />
+        <div class="hero-split">
+          <ul class="hero-roles">
+            <li>SOFTWARE ENGINEER</li>
+            <li>AI EXPLORER</li>
+            <li>KNOWLEDGE BUILDER</li>
+          </ul>
+          <p class="hero-bio">
+            热爱代码与创造，在数字世界中构建优雅、高效、有温度的产品。
+            相信好的工程像出版物一样经得起时间检验，持续探索 AI 与知识管理的交汇地带。
           </p>
-        </article>
-
-        <article class="work-feature" id="work-03">
-          <span class="work-num-lg">03</span>
-          <h2 class="work-title">Automation Toolkit</h2>
-          <p class="work-body">
-            面向开发者的自动化工具集：Git 工作流脚本、文档同步、
-            CI/CD 模板、以及日常重复任务的批处理方案。
-            目标是用最小代码解决最大效率问题。
-          </p>
-        </article>
-      </section>
-
-      <section class="section reading" id="reading">
-        <h2 class="section-label">READING ARCHIVE</h2>
-        <div class="reading-categories">
-          <button class="reading-cat active" data-cat="tech">技术</button>
-          <button class="reading-cat" data-cat="history">历史</button>
-          <button class="reading-cat" data-cat="philosophy">哲学</button>
-          <button class="reading-cat" data-cat="business">商业</button>
-          <button class="reading-cat" data-cat="bible">圣经</button>
-          <button class="reading-cat" data-cat="ai">人工智能</button>
         </div>
-        <div class="reading-shelf">
-          <div class="reading-panel active" data-panel="tech">
-            <ul class="reading-list">
-              <li><span class="book-title">深入理解计算机系统</span><span class="book-author">Bryant & O'Hallaron</span></li>
-              <li><span class="book-title">Designing Data-Intensive Applications</span><span class="book-author">Martin Kleppmann</span></li>
-              <li><span class="book-title">Clean Code</span><span class="book-author">Robert C. Martin</span></li>
-            </ul>
-          </div>
-          <div class="reading-panel" data-panel="history">
-            <ul class="reading-list">
-              <li><span class="book-title">人类简史</span><span class="book-author">Yuval Noah Harari</span></li>
-              <li><span class="book-title">枪炮、病菌与钢铁</span><span class="book-author">Jared Diamond</span></li>
-              <li><span class="book-title">万历十五年</span><span class="book-author">黄仁宇</span></li>
-            </ul>
-          </div>
-          <div class="reading-panel" data-panel="philosophy">
-            <ul class="reading-list">
-              <li><span class="book-title">沉思录</span><span class="book-author">Marcus Aurelius</span></li>
-              <li><span class="book-title">存在与时间</span><span class="book-author">Martin Heidegger</span></li>
-              <li><span class="book-title">哲学问题</span><span class="book-author">Bertrand Russell</span></li>
-            </ul>
-          </div>
-          <div class="reading-panel" data-panel="business">
-            <ul class="reading-list">
-              <li><span class="book-title">从 0 到 1</span><span class="book-author">Peter Thiel</span></li>
-              <li><span class="book-title">创新者的窘境</span><span class="book-author">Clayton Christensen</span></li>
-              <li><span class="book-title">原则</span><span class="book-author">Ray Dalio</span></li>
-            </ul>
-          </div>
-          <div class="reading-panel" data-panel="bible">
-            <ul class="reading-list">
-              <li><span class="book-title">圣经</span><span class="book-author">旧约 · 新约</span></li>
-              <li><span class="book-title">天路历程</span><span class="book-author">John Bunyan</span></li>
-              <li><span class="book-title">属灵操练礼赞</span><span class="book-author">Richard Foster</span></li>
-            </ul>
-          </div>
-          <div class="reading-panel" data-panel="ai">
-            <ul class="reading-list">
-              <li><span class="book-title">Life 3.0</span><span class="book-author">Max Tegmark</span></li>
-              <li><span class="book-title">AI Superpowers</span><span class="book-author">Kai-Fu Lee</span></li>
-              <li><span class="book-title">The Alignment Problem</span><span class="book-author">Brian Christian</span></li>
-            </ul>
-          </div>
+      </div>
+      <figure class="hero-portrait">
+        <img
+          src="https://avatars.githubusercontent.com/u/45551140?v=4"
+          alt="Windy 肖像"
+          class="halftone-img"
+          width="320"
+          height="400"
+        />
+        <div class="halftone-overlay" aria-hidden="true"></div>
+      </figure>
+    </section>
+
+    <!-- Latest Update Ticker -->
+    <div class="ticker">
+      <span class="ticker-badge">LATEST UPDATE · 2026.06.01</span>
+      <a href="blog/agents-changing-dev.html" class="ticker-title">为什么 Agent 正在改变软件开发</a>
+      <a href="#writing" class="ticker-more">VIEW ALL →</a>
+    </div>
+
+    <!-- Category Grid -->
+    <section class="category-grid">
+      <article class="category-card" id="about">
+        <span class="cat-num">001</span>
+        <h2 class="cat-title">ABOUT</h2>
+        <p class="cat-desc">关注软件工程、人工智能与知识管理。用系统化思维组织数字生活，在技术与人文之间寻找平衡。</p>
+        <a href="#about" class="cat-link">READ MORE →</a>
+        <div class="cat-image">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=280&fit=crop&q=80" alt="" class="halftone-img" loading="lazy" />
+          <div class="halftone-overlay" aria-hidden="true"></div>
         </div>
-      </section>
+      </article>
 
-      <section class="section articles" id="writing">
-        <h2 class="section-label">LATEST ARTICLES</h2>
-        <ul class="article-list">
-          <li>
-            <a href="blog/agents-changing-dev.html">
-              <time datetime="2026-06-01">2026.06.01</time>
-              <span class="article-title">为什么 Agent 正在改变软件开发</span>
-            </a>
-          </li>
-          <li>
-            <a href="blog/cursor-observations.html">
-              <time datetime="2026-05-20">2026.05.20</time>
-              <span class="article-title">Cursor 使用半年的观察</span>
-            </a>
-          </li>
-          <li>
-            <a href="blog/knowledge-system.html">
-              <time datetime="2026-05-01">2026.05.01</time>
-              <span class="article-title">我的知识管理体系</span>
-            </a>
-          </li>
-          <li>
-            <a href="blog/js-event-loop.html">
-              <time datetime="2026-05-12">2026.05.12</time>
-              <span class="article-title">深入理解 JavaScript 事件循环</span>
-            </a>
-          </li>
-          <li>
-            <a href="blog/typescript-generics.html">
-              <time datetime="2026-04-28">2026.04.28</time>
-              <span class="article-title">TypeScript 泛型：从入门到实践</span>
-            </a>
-          </li>
-        </ul>
-      </section>
-    </main>
+      <article class="category-card" id="projects">
+        <span class="cat-num">002</span>
+        <h2 class="cat-title">PROJECTS</h2>
+        <p class="cat-desc">AI Agent Lab、知识管理系统、自动化工具链与开源 side project。从原型到部署的完整工程实践。</p>
+        <a href="https://github.com/abcdzyone" target="_blank" rel="noopener" class="cat-link">EXPLORE →</a>
+        <div class="cat-image">
+          <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=280&fit=crop&q=80" alt="" class="halftone-img" loading="lazy" />
+          <div class="halftone-overlay" aria-hidden="true"></div>
+        </div>
+      </article>
 
-    <!-- Column 3: Work Detail + Timeline + Footer -->
-    <aside class="col col-right">
-      <section class="section work-detail">
-        <article class="work-feature" id="work-02">
-          <span class="work-num-lg">02</span>
-          <h2 class="work-title">Knowledge System</h2>
-          <p class="work-body">
-            基于 Obsidian + Git 的个人知识管理系统，涵盖 PARA 方法论、
-            双向链接、定期回顾与输出工作流。将阅读笔记、项目文档、
-            技术思考统一归档，形成可检索的个人知识图谱。
-          </p>
-        </article>
+      <article class="category-card" id="writing">
+        <span class="cat-num">003</span>
+        <h2 class="cat-title">WRITING</h2>
+        <p class="cat-desc">技术洞察、工程实践与思考笔记。记录 Agent 时代开发范式的转变，以及工具如何重塑创造力。</p>
+        <a href="blog/agents-changing-dev.html" class="cat-link">READ POSTS →</a>
+        <div class="cat-image">
+          <img src="https://images.unsplash.com/photo-1455390219741-b61f56d5c722?w=400&h=280&fit=crop&q=80" alt="" class="halftone-img" loading="lazy" />
+          <div class="halftone-overlay" aria-hidden="true"></div>
+        </div>
+      </article>
 
-        <article class="work-feature" id="work-04">
-          <span class="work-num-lg">04</span>
-          <h2 class="work-title">Open Source Projects</h2>
-          <p class="work-body">
-            持续维护的开源项目与个人站点。
-            包括 windy.github.io 个人档案馆、Free-V2ray-Config 配置集合，
-            以及多个开发者工具 side project。
-          </p>
-          <a href="https://github.com/abcdzyone" target="_blank" rel="noopener" class="work-link">GitHub →</a>
-        </article>
-      </section>
+      <article class="category-card" id="reading">
+        <span class="cat-num">004</span>
+        <h2 class="cat-title">READING</h2>
+        <p class="cat-desc">技术、历史、哲学、商业与 AI 领域的阅读档案。每本书都是一次认知升级，笔记沉淀为可检索的知识节点。</p>
+        <a href="#reading" class="cat-link">BROWSE →</a>
+        <div class="cat-image">
+          <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=280&fit=crop&q=80" alt="" class="halftone-img" loading="lazy" />
+          <div class="halftone-overlay" aria-hidden="true"></div>
+        </div>
+      </article>
 
-      <section class="section timeline" id="timeline">
-        <h2 class="section-label">TIMELINE</h2>
-        <ol class="timeline-list">
-          <li>
-            <span class="timeline-year">2026</span>
-            <span class="timeline-event">AI Agent Project</span>
-          </li>
-          <li>
-            <span class="timeline-year">2025</span>
-            <span class="timeline-event">探索大模型</span>
-          </li>
-          <li>
-            <span class="timeline-year">2024</span>
-            <span class="timeline-event">构建知识库</span>
-          </li>
-          <li>
-            <span class="timeline-year">2023</span>
-            <span class="timeline-event">进入软件行业</span>
-          </li>
-        </ol>
-      </section>
+      <article class="category-card" id="notes">
+        <span class="cat-num">005</span>
+        <h2 class="cat-title">NOTES</h2>
+        <p class="cat-desc">灵感碎片、日常观察与快速记录。Obsidian 双向链接 + Git 版本控制，构建个人第二大脑的日常输入层。</p>
+        <a href="blog/knowledge-system.html" class="cat-link">OPEN NOTES →</a>
+        <div class="cat-image">
+          <img src="https://images.unsplash.com/photo-1511920170033-f8396924c10b?w=400&h=280&fit=crop&q=80" alt="" class="halftone-img" loading="lazy" />
+          <div class="halftone-overlay" aria-hidden="true"></div>
+        </div>
+      </article>
 
-      <footer class="site-footer">
-        <div class="footer-halftone" aria-hidden="true"></div>
-        <h2 class="footer-title">DIGITAL ARCHIVE<span class="title-dot">.</span></h2>
-        <p class="footer-roles">Software Engineer · AI Explorer · Lifelong Learner</p>
-        <p class="footer-copy">© 2026 Windy</p>
-        <a href="https://github.com/abcdzyone" target="_blank" rel="noopener" class="footer-github">@abcdzyone</a>
-      </footer>
-    </aside>
+      <article class="category-card" id="timeline">
+        <span class="cat-num">006</span>
+        <h2 class="cat-title">TIMELINE</h2>
+        <p class="cat-desc">2020 起步 · 2023 入行 · 2024 知识库 · 2025 大模型 · 2026 Agent 项目。每一步都是下一次跃迁的基石。</p>
+        <a href="#timeline" class="cat-link">VIEW HISTORY →</a>
+        <div class="cat-image">
+          <img src="https://images.unsplash.com/photo-1493612276213-ee3925520722?w=400&h=280&fit=crop&q=80" alt="" class="halftone-img" loading="lazy" />
+          <div class="halftone-overlay" aria-hidden="true"></div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-left">
+        <span class="footer-brand">DIGITAL ARCHIVE</span>
+        <span class="footer-copy">© 2026 Windy. All rights reserved.</span>
+      </div>
+      <blockquote class="footer-quote">
+        <p>STAY HUNGRY, STAY FOOLISH.</p>
+        <cite>— STEVE JOBS</cite>
+      </blockquote>
+      <div class="footer-links">
+        <a href="mailto:hello@windy.dev">EMAIL</a>
+        <span>/</span>
+        <a href="blog/agents-changing-dev.html">RSS</a>
+        <span>/</span>
+        <a href="https://github.com/abcdzyone" target="_blank" rel="noopener">GITHUB</a>
+      </div>
+    </footer>
   </div>
-
-  <button class="mobile-nav-toggle" aria-label="打开导航" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-  <nav class="mobile-nav" aria-hidden="true">
-    <a href="#about">About</a>
-    <a href="#projects">Work</a>
-    <a href="#writing">Writing</a>
-    <a href="#reading">Reading</a>
-    <a href="#timeline">Timeline</a>
-  </nav>
 
   <script src="js/main.js"></script>
 </body>
