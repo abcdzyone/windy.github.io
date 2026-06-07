@@ -85,8 +85,13 @@
   }
 
   async function load() {
+    if (window.WEREAD_PUBLIC) {
+      render(window.WEREAD_PUBLIC);
+      return;
+    }
     try {
-      const res = await fetch('./data/weread-public.json', { cache: 'no-cache' });
+      const url = window.siteUrl ? window.siteUrl('data/weread-public.json') : './data/weread-public.json';
+      const res = await fetch(url, { cache: 'no-cache' });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       render(await res.json());
     } catch {
