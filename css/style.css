@@ -150,12 +150,53 @@ body {
 
 .accent-text { color: var(--accent); }
 
+/* Halftone dot-matrix typography */
+.halftone {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-repeat: repeat;
+}
+
+.halftone-light {
+  --ht-ink: #ececf2;
+  --ht-dot: 0.085em;
+  --ht-grid: 0.23em;
+  background-image:
+    radial-gradient(circle, var(--ht-ink) var(--ht-dot), transparent calc(var(--ht-dot) + 0.015em)),
+    radial-gradient(circle, var(--ht-ink) var(--ht-dot), transparent calc(var(--ht-dot) + 0.015em));
+  background-size: var(--ht-grid) var(--ht-grid), var(--ht-grid) var(--ht-grid);
+  background-position: 0 0, calc(var(--ht-grid) / 2) calc(var(--ht-grid) / 2);
+}
+
+.halftone-accent {
+  --ht-ink: #6ee7ff;
+  --ht-dot: 0.09em;
+  --ht-grid: 0.24em;
+  background-image:
+    radial-gradient(circle, var(--ht-ink) var(--ht-dot), transparent calc(var(--ht-dot) + 0.015em)),
+    radial-gradient(circle, var(--ht-ink) var(--ht-dot), transparent calc(var(--ht-dot) + 0.015em));
+  background-size: var(--ht-grid) var(--ht-grid), var(--ht-grid) var(--ht-grid);
+  background-position: 0 0, calc(var(--ht-grid) / 2) calc(var(--ht-grid) / 2);
+  filter: drop-shadow(0 0 28px rgba(110, 231, 255, 0.28));
+}
+
+.halftone-sm {
+  --ht-dot: 0.07em;
+  --ht-grid: 0.19em;
+}
+
 .hero-sub {
   font-family: var(--mono);
   font-size: clamp(1rem, 3vw, 1.4rem);
-  color: var(--accent);
   margin-bottom: 1.5rem;
   min-height: 2rem;
+}
+
+.hero-sub .cursor-blink {
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
 }
 
 .cursor-blink { animation: blink 1s step-end infinite; }
