@@ -15,6 +15,7 @@
     <a href="#" class="nav-logo">Windy<span class="accent">.</span></a>
     <ul class="nav-links">
       <li><a href="#about">关于</a></li>
+      <li><a href="#live">数据</a></li>
       <li><a href="#blog">博客</a></li>
       <li><a href="#skills">技能</a></li>
       <li><a href="#projects">项目</a></li>
@@ -99,9 +100,62 @@
       </div>
     </section>
 
+    <section id="live" class="section">
+      <div class="section-header reveal">
+        <span class="section-tag">02 / Live</span>
+        <h2>实时数据</h2>
+        <p class="section-desc">通过公开 API 拉取，浏览器端 fetch 展示。数据仅供参考。</p>
+        <p class="live-location" id="live-location">正在定位…</p>
+      </div>
+      <div class="live-grid">
+        <article class="live-card glass reveal" id="card-weather">
+          <div class="live-card-head">
+            <span class="live-label">Weather</span>
+            <span class="live-source">Open-Meteo</span>
+          </div>
+          <div class="live-body live-loading">加载中…</div>
+        </article>
+        <article class="live-card glass reveal" id="card-air">
+          <div class="live-card-head">
+            <span class="live-label">Air Quality</span>
+            <span class="live-source">Open-Meteo</span>
+          </div>
+          <div class="live-body live-loading">加载中…</div>
+        </article>
+        <article class="live-card glass reveal" id="card-exchange">
+          <div class="live-card-head">
+            <span class="live-label">Exchange</span>
+            <span class="live-source">Frankfurter</span>
+          </div>
+          <div class="live-body live-loading">加载中…</div>
+        </article>
+        <article class="live-card glass reveal" id="card-sun">
+          <div class="live-card-head">
+            <span class="live-label">Sun</span>
+            <span class="live-source">Open-Meteo</span>
+          </div>
+          <div class="live-body live-loading">加载中…</div>
+        </article>
+        <article class="live-card glass reveal" id="card-time">
+          <div class="live-card-head">
+            <span class="live-label">World Time</span>
+            <span class="live-source">Intl API</span>
+          </div>
+          <div class="live-body live-loading">加载中…</div>
+        </article>
+        <article class="live-card glass reveal" id="card-github">
+          <div class="live-card-head">
+            <span class="live-label">GitHub</span>
+            <span class="live-source">GitHub API</span>
+          </div>
+          <div class="live-body live-loading">加载中…</div>
+        </article>
+      </div>
+    </section>
+
     <section id="blog" class="section">
       <div class="section-header reveal">
-        <span class="section-tag">02 / Blog</span>
+        <span class="section-tag">03 / Blog</span>
         <h2>技术博客</h2>
         <p class="section-desc">记录学习笔记、工程实践与思考。</p>
       </div>
@@ -182,7 +236,7 @@
 
     <section id="skills" class="section">
       <div class="section-header reveal">
-        <span class="section-tag">03 / Skills</span>
+        <span class="section-tag">04 / Skills</span>
         <h2>技能栈</h2>
       </div>
       <div class="skills-grid">
@@ -231,7 +285,7 @@
 
     <section id="projects" class="section">
       <div class="section-header reveal">
-        <span class="section-tag">04 / Projects</span>
+        <span class="section-tag">05 / Projects</span>
         <h2>精选项目</h2>
       </div>
       <div class="projects-grid">
@@ -286,7 +340,7 @@
 
     <section id="contact" class="section">
       <div class="section-header reveal">
-        <span class="section-tag">05 / Contact</span>
+        <span class="section-tag">06 / Contact</span>
         <h2>保持联系</h2>
       </div>
       <div class="contact-wrap reveal">
@@ -321,5 +375,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/live-data.js"></script>
 </body>
 </html>
