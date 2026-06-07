@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的知识管理体系 · Digital Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/blog.css" />
+</head>
+<body class="blog-page">
+  <div class="paper-grain" aria-hidden="true"></div>
+
+  <header class="blog-header">
+    <a href="../index.html" class="blog-logo">DIGITAL ARCHIVE.</a>
+    <a href="../index.html#writing" class="blog-nav-link">Articles</a>
+  </header>
+
+  <main>
+    <article class="blog-article">
+      <a href="../index.html#writing" class="blog-back">← 返回文章列表</a>
+      <header>
+        <h1>我的知识管理体系</h1>
+        <div class="article-meta">
+          <time datetime="2026-05-01">2026.05.01</time>
+          <span>7 min read</span>
+          <div class="article-tags">
+            <span>PKM</span><span>Obsidian</span>
+          </div>
+        </div>
+      </header>
+      <div class="blog-content">
+        <p>知识管理（PKM）不是囤积信息，而是建立从输入到输出的可持续系统。经过一年多的迭代，我形成了一套基于 Obsidian + Git 的个人知识管理体系。</p>
+
+        <h2>核心原则</h2>
+        <ul>
+          <li><strong>单一入口</strong>：所有笔记写入 Obsidian vault</li>
+          <li><strong>版本控制</strong>：vault 通过 Git 同步，保留完整历史</li>
+          <li><strong>双向链接</strong>：笔记之间建立语义关联，而非文件夹层级</li>
+          <li><strong>定期回顾</strong>：每周 review inbox，每月整理标签和 MOC</li>
+        </ul>
+
+        <h2>PARA 结构</h2>
+        <p>采用 Tiago Forte 的 PARA 方法论组织顶层目录：</p>
+        <ul>
+          <li><strong>Projects</strong>：有明确截止日期的工作</li>
+          <li><strong>Areas</strong>：需要持续维护的责任领域</li>
+          <li><strong>Resources</strong>：未来可能有用的参考资料</li>
+          <li><strong>Archives</strong>：已完成或不再活跃的内容</li>
+        </ul>
+
+        <h2>输入 → 输出链路</h2>
+        <p>阅读时使用渐进式摘要（Progressive Summarization）：高亮 → 加粗 → 用自己的话总结 → 写连接笔记。最终输出形式包括技术博客、项目文档、以及这个 Digital Archive 网站本身。</p>
+
+        <blockquote>
+          知识管理的价值不在于存储了多少，而在于连接了多少、输出了多少。
+        </blockquote>
+
+        <p>系统还在持续优化中。下一步计划引入 AI 辅助的笔记检索和自动 tagging，让知识库真正「活」起来。</p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="blog-footer">
+    <p class="blog-footer-title">DIGITAL ARCHIVE.</p>
+    <p class="blog-footer-copy">© 2026 Windy</p>
+  </footer>
+</body>
+</html>

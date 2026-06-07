@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cursor 使用半年的观察 · Digital Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/blog.css" />
+</head>
+<body class="blog-page">
+  <div class="paper-grain" aria-hidden="true"></div>
+
+  <header class="blog-header">
+    <a href="../index.html" class="blog-logo">DIGITAL ARCHIVE.</a>
+    <a href="../index.html#writing" class="blog-nav-link">Articles</a>
+  </header>
+
+  <main>
+    <article class="blog-article">
+      <a href="../index.html#writing" class="blog-back">← 返回文章列表</a>
+      <header>
+        <h1>Cursor 使用半年的观察</h1>
+        <div class="article-meta">
+          <time datetime="2026-05-20">2026.05.20</time>
+          <span>8 min read</span>
+          <div class="article-tags">
+            <span>Cursor</span><span>Tools</span>
+          </div>
+        </div>
+      </header>
+      <div class="blog-content">
+        <p>从 2025 年底开始，Cursor 成为我的主力 IDE。半年下来，它已经从「有趣的实验工具」变成了日常开发不可或缺的一部分。以下是一些真实的使用观察。</p>
+
+        <h2>什么场景最有效</h2>
+        <ul>
+          <li><strong>探索陌生代码库</strong>：让 Agent 快速定位关键文件和调用链</li>
+          <li><strong>重复性重构</strong>：批量重命名、提取函数、统一代码风格</li>
+          <li><strong>测试编写</strong>：根据现有代码生成单元测试框架</li>
+          <li><strong>文档同步</strong>：代码变更后自动更新 README 和相关文档</li>
+        </ul>
+
+        <h2>什么场景仍需人工</h2>
+        <p>架构决策、复杂业务逻辑的设计、以及涉及多个系统的集成调试——这些仍然需要人类的判断力和领域知识。Agent 可以加速执行，但不能替代思考。</p>
+
+        <h2>工作流建议</h2>
+        <ol>
+          <li>将大任务拆分为小步骤，逐步交给 Agent</li>
+          <li>每次变更后立即 review diff，不要累积</li>
+          <li>善用 Rules 和 Skills 固化项目约定</li>
+          <li>保持 git commit 粒度小，方便回滚</li>
+        </ol>
+
+        <blockquote>
+          最好的 AI 工作流不是完全自动化，而是人机协作的最优分工。
+        </blockquote>
+
+        <p>Cursor 还在快速迭代中。Agent 模式、Background Tasks、MCP 集成都还在进化。作为早期使用者，我的建议是：保持开放，但保持批判性思维。</p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="blog-footer">
+    <p class="blog-footer-title">DIGITAL ARCHIVE.</p>
+    <p class="blog-footer-copy">© 2026 Windy</p>
+  </footer>
+</body>
+</html>
