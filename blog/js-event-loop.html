@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>深入理解 JavaScript 事件循环 · Windy</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/blog.css" />
+</head>
+<body class="blog-page">
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Windy<span class="accent">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#blog">博客</a></li>
+    </ul>
+    <a href="https://github.com/abcdzyone" target="_blank" rel="noopener" class="nav-cta">GitHub</a>
+  </nav>
+
+  <main>
+    <article class="blog-article">
+      <a href="../index.html#blog" class="blog-back">← 返回博客</a>
+      <header>
+        <h1>深入理解 JavaScript 事件循环</h1>
+        <div class="article-meta">
+          <time datetime="2026-05-12">2026-05-12</time>
+          <span>8 min read</span>
+          <div class="article-tags">
+            <span>JavaScript</span><span>Runtime</span>
+          </div>
+        </div>
+      </header>
+      <div class="blog-content">
+        <p>JavaScript 是单线程语言，却能在浏览器中同时处理用户交互、网络请求和定时器。秘密就在于<strong>事件循环（Event Loop）</strong>——它协调调用栈、任务队列和微任务队列，决定代码何时执行。</p>
+
+        <h2>调用栈与异步任务</h2>
+        <p>同步代码按顺序压入调用栈执行。遇到 <code>setTimeout</code>、<code>fetch</code>、<code>Promise</code> 等异步 API 时，回调不会立刻执行，而是被注册到对应的队列中，等待调用栈清空后再处理。</p>
+        <pre><code>console.log('1');
+
+setTimeout(() => console.log('2'), 0);
+
+Promise.resolve().then(() => console.log('3'));
+
+console.log('4');
+// 输出: 1 → 4 → 3 → 2</code></pre>
+        <p>为什么 <code>3</code> 先于 <code>2</code>？因为 Promise 回调属于<strong>微任务（Microtask）</strong>，而 setTimeout 属于<strong>宏任务（Macrotask）</strong>。每一轮事件循环中，微任务会在下一个宏任务之前全部执行完毕。</p>
+
+        <h2>事件循环的一轮</h2>
+        <ol>
+          <li>执行当前宏任务（如 script、setTimeout 回调）</li>
+          <li>调用栈清空后，执行所有微任务（Promise.then、queueMicrotask）</li>
+          <li>必要时渲染 UI（requestAnimationFrame 在此阶段）</li>
+          <li>取下一个宏任务，重复</li>
+        </ol>
+
+        <h2>async/await 的本质</h2>
+        <p><code>await</code> 之后的代码会被编译成 Promise 的 <code>.then</code> 回调，因此属于微任务。理解这一点能解释很多「明明 await 了，顺序却不对」的 bug。</p>
+        <pre><code>async function demo() {
+  console.log('A');
+  await Promise.resolve();
+  console.log('B');
+}
+demo();
+console.log('C');
+// A → C → B</code></pre>
+
+        <h2>实践建议</h2>
+        <ul>
+          <li>避免在微任务中执行耗时操作，会阻塞渲染</li>
+          <li>大量 DOM 更新可分批用 <code>requestAnimationFrame</code> 或 <code>setTimeout(0)</code></li>
+          <li>调试时打开 Chrome Performance 面板，观察 Task 与 Microtask 时序</li>
+        </ul>
+
+        <blockquote>事件循环不是抽象概念，而是理解 JavaScript 并发模型的钥匙。掌握它，async 代码就不再是黑盒。</blockquote>
+      </div>
+      <nav class="article-nav">
+        <a href="git-workflow.html">← Git 工作流</a>
+        <a href="typescript-generics.html" class="next">TypeScript 泛型 →</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Windy</p>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

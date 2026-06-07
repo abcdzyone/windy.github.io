@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TypeScript 泛型：从入门到实践 · Windy</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/blog.css" />
+</head>
+<body class="blog-page">
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Windy<span class="accent">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#blog">博客</a></li>
+    </ul>
+    <a href="https://github.com/abcdzyone" target="_blank" rel="noopener" class="nav-cta">GitHub</a>
+  </nav>
+
+  <main>
+    <article class="blog-article">
+      <a href="../index.html#blog" class="blog-back">← 返回博客</a>
+      <header>
+        <h1>TypeScript 泛型：从入门到实践</h1>
+        <div class="article-meta">
+          <time datetime="2026-04-28">2026-04-28</time>
+          <span>6 min read</span>
+          <div class="article-tags">
+            <span>TypeScript</span><span>类型系统</span>
+          </div>
+        </div>
+      </header>
+      <div class="blog-content">
+        <p>泛型让类型像参数一样传递，在保持类型安全的同时避免重复定义。它是 TypeScript 从「能写类型」到「会设计类型」的分水岭。</p>
+
+        <h2>基础：类型参数</h2>
+        <pre><code>function first&lt;T&gt;(arr: T[]): T | undefined {
+  return arr[0];
+}
+
+const n = first([1, 2, 3]);     // number | undefined
+const s = first(['a', 'b']);    // string | undefined</code></pre>
+        <p>编译器根据实参推断 <code>T</code>，一处定义，多种类型复用。</p>
+
+        <h2>约束：extends</h2>
+        <p>并非所有类型都有 <code>.length</code>。用 <code>extends</code> 限定上界：</p>
+        <pre><code>function logLength&lt;T extends { length: number }&gt;(val: T): void {
+  console.log(val.length);
+}
+
+logLength('hello');   // OK
+logLength(42);        // Error</code></pre>
+
+        <h2>工具类型的思路</h2>
+        <p>内置的 <code>Partial&lt;T&gt;</code>、<code>Pick&lt;T, K&gt;</code>、<code>Omit&lt;T, K&gt;</code> 都是泛型 + 映射类型的组合。理解 <code>keyof</code> 和条件类型后，你可以自己写：</p>
+        <pre><code>type Optional&lt;T, K extends keyof T&gt; = Omit&lt;T, K&gt; & Partial&lt;Pick&lt;T, K&gt;&gt;;
+
+interface User { id: number; name: string; email: string; }
+type UserPatch = Optional&lt;User, 'email'&gt;;</code></pre>
+
+        <h2>实战：API 响应包装</h2>
+        <pre><code>interface ApiResponse&lt;T&gt; {
+  code: number;
+  data: T;
+  message: string;
+}
+
+async function fetchUser(id: string): Promise&lt;ApiResponse&lt;User&gt;&gt; {
+  const res = await fetch(`/api/users/${id}`);
+  return res.json();
+}</code></pre>
+        <p>前后端约定统一响应结构，泛型让 <code>data</code> 的类型随接口变化，IDE 自动补全不会丢。</p>
+
+        <h2>常见误区</h2>
+        <ul>
+          <li>过度泛型化：简单函数不必强行加 <code>&lt;T&gt;</code></li>
+          <li>滥用 <code>any</code> 作为泛型默认值，会吞掉类型检查</li>
+          <li>复杂条件类型可读性差，适当拆成 type alias</li>
+        </ul>
+      </div>
+      <nav class="article-nav">
+        <a href="js-event-loop.html">← 事件循环</a>
+        <a href="github-pages-guide.html" class="next">GitHub Pages 指南 →</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Windy</p>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

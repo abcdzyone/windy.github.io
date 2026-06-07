@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Grid 与 Flexbox：如何选择 · Windy</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/blog.css" />
+</head>
+<body class="blog-page">
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Windy<span class="accent">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#blog">博客</a></li>
+    </ul>
+    <a href="https://github.com/abcdzyone" target="_blank" rel="noopener" class="nav-cta">GitHub</a>
+  </nav>
+
+  <main>
+    <article class="blog-article">
+      <a href="../index.html#blog" class="blog-back">← 返回博客</a>
+      <header>
+        <h1>CSS Grid 与 Flexbox：如何选择</h1>
+        <div class="article-meta">
+          <time datetime="2026-03-08">2026-03-08</time>
+          <span>6 min read</span>
+          <div class="article-tags">
+            <span>CSS</span><span>布局</span>
+          </div>
+        </div>
+      </header>
+      <div class="blog-content">
+        <p>Flexbox 和 Grid 不是竞争关系，而是互补。一句话总结：<strong>一维用 Flex，二维用 Grid</strong>。</p>
+
+        <h2>Flexbox：沿单轴排列</h2>
+        <p>适合导航栏、按钮组、卡片内垂直居中、等分空间等场景。主轴（row/column）上灵活分配空间，交叉轴对齐简单。</p>
+        <pre><code>.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}</code></pre>
+
+        <h2>Grid：行与列同时控制</h2>
+        <p>适合页面整体布局、图片画廊、仪表盘、复杂表单。可以精确定义轨道、区域命名、跨行跨列。</p>
+        <pre><code>.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main"
+    "sidebar footer";
+  min-height: 100vh;
+}</code></pre>
+
+        <h2>决策树</h2>
+        <ul>
+          <li>内容决定尺寸，只需排成一行/一列 → Flex</li>
+          <li>需要固定列宽、等高卡片、整体页面骨架 → Grid</li>
+          <li>组件内部用 Flex，页面级用 Grid → 常见组合</li>
+        </ul>
+
+        <h2>Grid 的 fr 与 minmax</h2>
+        <pre><code>.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}</code></pre>
+        <p>这一行实现响应式卡片网格：列宽不小于 280px，剩余空间等分，无需媒体查询断点。</p>
+
+        <h2>Container Queries</h2>
+        <p>当组件需要在不同容器宽度下改变布局，<code>@container</code> 比 viewport 媒体查询更精准。Grid 定义骨架，Container Query 做组件级响应式，是 2024+ 的推荐模式。</p>
+
+        <blockquote>不要问「哪个更好」，问「我要控制几个维度」。一维 Flex，二维 Grid，组合使用才是正道。</blockquote>
+      </div>
+      <nav class="article-nav">
+        <a href="docker-frontend.html">← Docker 入门</a>
+        <a href="git-workflow.html" class="next">Git 工作流 →</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Windy</p>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

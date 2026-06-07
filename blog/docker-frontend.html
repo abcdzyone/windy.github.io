@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docker 入门：前端开发者视角 · Windy</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/blog.css" />
+</head>
+<body class="blog-page">
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Windy<span class="accent">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#blog">博客</a></li>
+    </ul>
+    <a href="https://github.com/abcdzyone" target="_blank" rel="noopener" class="nav-cta">GitHub</a>
+  </nav>
+
+  <main>
+    <article class="blog-article">
+      <a href="../index.html#blog" class="blog-back">← 返回博客</a>
+      <header>
+        <h1>Docker 入门：前端开发者视角</h1>
+        <div class="article-meta">
+          <time datetime="2026-03-20">2026-03-20</time>
+          <span>7 min read</span>
+          <div class="article-tags">
+            <span>Docker</span><span>前端工程化</span>
+          </div>
+        </div>
+      </header>
+      <div class="blog-content">
+        <p>前端项目部署常遇到 Node 版本不一致、依赖装不上、环境变量遗漏等问题。Docker 把应用和运行环境打包成镜像，实现「一次构建，到处运行」。</p>
+
+        <h2>核心概念</h2>
+        <ul>
+          <li><strong>镜像（Image）</strong>：只读模板，类似类</li>
+          <li><strong>容器（Container）</strong>：镜像的运行实例</li>
+          <li><strong>Dockerfile</strong>：构建镜像的 recipe</li>
+        </ul>
+
+        <h2>多阶段构建：React / Vite 项目</h2>
+        <pre><code># 阶段 1：构建
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# 阶段 2：用 nginx 托管静态文件
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]</code></pre>
+        <p>最终镜像只有 nginx + 静态资源，体积从 1GB+ 降到几十 MB。</p>
+
+        <h2>常用命令</h2>
+        <pre><code>docker build -t my-app .
+docker run -p 8080:80 my-app
+docker ps                    # 查看运行中容器
+docker logs &lt;container_id&gt;   # 查看日志</code></pre>
+
+        <h2>docker-compose 本地联调</h2>
+        <p>前后端分离时，一个 compose 文件拉起 API + 前端 + 数据库：</p>
+        <pre><code>services:
+  web:
+    build: ./frontend
+    ports: ["3000:80"]
+  api:
+    build: ./backend
+    ports: ["4000:4000"]
+    environment:
+      - DATABASE_URL=postgres://db:5432/app
+  db:
+    image: postgres:16-alpine</code></pre>
+
+        <h2>前端开发者何时需要 Docker</h2>
+        <ul>
+          <li>团队统一开发环境（Node 版本、系统库）</li>
+          <li>CI/CD 流水线中 reproducible build</li>
+          <li>预览环境一键部署</li>
+          <li>全栈项目本地模拟生产架构</li>
+        </ul>
+      </div>
+      <nav class="article-nav">
+        <a href="github-pages-guide.html">← GitHub Pages</a>
+        <a href="css-grid-flexbox.html" class="next">CSS Grid vs Flexbox →</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Windy</p>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Git 工作流：Feature Branch 最佳实践 · Windy</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/blog.css" />
+</head>
+<body class="blog-page">
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Windy<span class="accent">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#blog">博客</a></li>
+    </ul>
+    <a href="https://github.com/abcdzyone" target="_blank" rel="noopener" class="nav-cta">GitHub</a>
+  </nav>
+
+  <main>
+    <article class="blog-article">
+      <a href="../index.html#blog" class="blog-back">← 返回博客</a>
+      <header>
+        <h1>Git 工作流：Feature Branch 最佳实践</h1>
+        <div class="article-meta">
+          <time datetime="2026-02-18">2026-02-18</time>
+          <span>5 min read</span>
+          <div class="article-tags">
+            <span>Git</span><span>协作</span>
+          </div>
+        </div>
+      </header>
+      <div class="blog-content">
+        <p>Feature Branch 工作流是中小团队最实用的 Git 模型：每个功能/修复在独立分支开发，通过 Pull Request 合并到主分支，保证 main 始终可部署。</p>
+
+        <h2>分支命名规范</h2>
+        <pre><code>feature/add-user-auth
+fix/login-redirect-loop
+chore/update-dependencies
+docs/api-readme</code></pre>
+        <p>前缀表明类型，后面用 kebab-case 描述。一眼看出分支用途，便于自动化和清理。</p>
+
+        <h2>标准流程</h2>
+        <ol>
+          <li>从最新的 <code>main</code> 拉分支：<code>git checkout -b feature/xxx</code></li>
+          <li>小步提交，每个 commit 做一件事</li>
+          <li>推送并开 PR，填写 Summary 和 Test plan</li>
+          <li>Code Review 通过后 squash merge 或 merge commit</li>
+          <li>删除已合并的远程分支</li>
+        </ol>
+
+        <h2>Commit Message</h2>
+        <p>推荐 Conventional Commits：</p>
+        <pre><code>feat: add particle background to homepage
+fix: correct mobile nav toggle on iOS
+docs: update README deployment section</code></pre>
+        <p>类型 + 简短描述，必要时正文写「为什么」而非「做了什么」。</p>
+
+        <h2>Rebase vs Merge</h2>
+        <ul>
+          <li><strong>Rebase</strong>：保持线性历史，适合个人 feature 分支同步 main</li>
+          <li><strong>Merge</strong>：保留分支拓扑，适合已 push 且他人基于其开发的分支</li>
+          <li>黄金法则：不要 rebase 已共享的公共分支</li>
+        </ul>
+
+        <h2>PR 质量 checklist</h2>
+        <ul>
+          <li>Diff 控制在 400 行以内，大了就拆 PR</li>
+          <li>CI 全绿再请求 Review</li>
+          <li>截图/录屏说明 UI 变更</li>
+          <li>关联 Issue：<code>Closes #123</code></li>
+        </ul>
+
+        <blockquote>好的 Git 工作流不是流程繁琐，而是让协作可预测、回滚可信赖、历史可阅读。</blockquote>
+      </div>
+      <nav class="article-nav">
+        <a href="css-grid-flexbox.html">← CSS 布局</a>
+        <a href="js-event-loop.html" class="next">事件循环 →</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Windy</p>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

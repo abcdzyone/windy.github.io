@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Pages 静态站点部署指南 · Windy</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/blog.css" />
+</head>
+<body class="blog-page">
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Windy<span class="accent">.</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#blog">博客</a></li>
+    </ul>
+    <a href="https://github.com/abcdzyone" target="_blank" rel="noopener" class="nav-cta">GitHub</a>
+  </nav>
+
+  <main>
+    <article class="blog-article">
+      <a href="../index.html#blog" class="blog-back">← 返回博客</a>
+      <header>
+        <h1>GitHub Pages 静态站点部署指南</h1>
+        <div class="article-meta">
+          <time datetime="2026-04-15">2026-04-15</time>
+          <span>5 min read</span>
+          <div class="article-tags">
+            <span>DevOps</span><span>GitHub</span>
+          </div>
+        </div>
+      </header>
+      <div class="blog-content">
+        <p>GitHub Pages 让静态网站免费托管在 GitHub 上，推送代码即自动发布。本文以纯 HTML 站点为例，走通完整流程。</p>
+
+        <h2>两种 URL 形式</h2>
+        <ul>
+          <li><strong>用户/组织站</strong>：仓库名必须为 <code>username.github.io</code>，访问 <code>https://username.github.io</code></li>
+          <li><strong>项目站</strong>：任意仓库名，访问 <code>https://username.github.io/repo-name/</code></li>
+        </ul>
+        <p>本站在 <code>windy.github.io</code> 仓库，属于项目站，路径需注意相对链接。</p>
+
+        <h2>启用 Pages</h2>
+        <ol>
+          <li>仓库 Settings → Pages</li>
+          <li>Source 选 Deploy from a branch</li>
+          <li>Branch 选 <code>main</code>，目录选 <code>/ (root)</code></li>
+          <li>保存后等待构建，绿色勾即部署成功</li>
+        </ol>
+
+        <h2>目录结构</h2>
+        <pre><code>windy.github.io/
+├── index.html      # 首页（必须有）
+├── css/
+├── js/
+└── blog/           # 文章子目录</code></pre>
+        <p>根目录的 <code>index.html</code> 会作为站点入口。仅 README 时 GitHub 会渲染 Markdown，但自定义 HTML 体验更好。</p>
+
+        <h2>自定义域名（可选）</h2>
+        <p>在 Pages 设置里填域名，并在 DNS 添加 CNAME 记录指向 <code>username.github.io</code>。仓库根目录放 <code>CNAME</code> 文件写入域名，防止被覆盖。</p>
+
+        <h2>GitHub Actions 自动部署</h2>
+        <p>若使用 Vite / Next 静态导出，可用 Actions 构建后推送到 <code>gh-pages</code> 分支：</p>
+        <pre><code>name: Deploy
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci && npm run build
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist</code></pre>
+
+        <blockquote>纯静态站最简单：main 分支 + index.html，push 即上线，零服务器成本。</blockquote>
+      </div>
+      <nav class="article-nav">
+        <a href="typescript-generics.html">← TypeScript 泛型</a>
+        <a href="docker-frontend.html" class="next">Docker 入门 →</a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Windy</p>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

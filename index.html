@@ -3,11 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Windy — 开发者个人主页，代码、创意与无限可能。" />
+  <meta name="description" content="Windy — 开发者个人主页与技术博客。" />
   <title>Windy · Developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -18,6 +15,7 @@
     <a href="#" class="nav-logo">Windy<span class="accent">.</span></a>
     <ul class="nav-links">
       <li><a href="#about">关于</a></li>
+      <li><a href="#blog">博客</a></li>
       <li><a href="#skills">技能</a></li>
       <li><a href="#projects">项目</a></li>
       <li><a href="#contact">联系</a></li>
@@ -33,12 +31,8 @@
 
   <main>
     <section class="hero">
-      <div class="hero-badge reveal">
-        <span class="pulse-dot"></span>
-        在线 · 接受新挑战
-      </div>
       <h1 class="hero-title reveal">
-        你好，我是 <span class="gradient-text">Windy</span>
+        你好，我是 <span class="accent-text">Windy</span>
       </h1>
       <p class="hero-sub reveal">
         <span id="typed"></span><span class="cursor-blink">|</span>
@@ -48,24 +42,8 @@
         构建优雅、高效、有温度的产品。
       </p>
       <div class="hero-actions reveal">
-        <a href="#projects" class="btn btn-primary">查看项目</a>
+        <a href="#blog" class="btn btn-primary">阅读博客</a>
         <a href="#contact" class="btn btn-ghost">联系我</a>
-      </div>
-      <div class="hero-stats reveal">
-        <div class="stat">
-          <span class="stat-num" data-target="2">0</span>
-          <span class="stat-label">开源项目</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <span class="stat-num" data-target="2018">0</span>
-          <span class="stat-label">始于年份</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <span class="stat-num" data-target="100">0</span><span class="stat-suffix">%</span>
-          <span class="stat-label">热爱程度</span>
-        </div>
       </div>
       <div class="scroll-hint reveal">
         <span>向下探索</span>
@@ -98,38 +76,118 @@
         </div>
         <div class="about-highlights">
           <div class="highlight-card glass reveal">
-            <div class="highlight-icon">⚡</div>
+            <span class="card-index">01</span>
             <h4>快速迭代</h4>
             <p>从想法到原型，追求最短路径验证，敏捷交付。</p>
           </div>
           <div class="highlight-card glass reveal">
-            <div class="highlight-icon">🎯</div>
+            <span class="card-index">02</span>
             <h4>专注细节</h4>
             <p>用户体验与代码质量并重，魔鬼藏在细节里。</p>
           </div>
           <div class="highlight-card glass reveal">
-            <div class="highlight-icon">🌊</div>
+            <span class="card-index">03</span>
             <h4>持续进化</h4>
             <p>技术栈不断刷新，保持好奇心与成长心态。</p>
           </div>
           <div class="highlight-card glass reveal">
-            <div class="highlight-icon">🔮</div>
+            <span class="card-index">04</span>
             <h4>未来视野</h4>
-            <p>关注 AI、Web3 与开发者工具的前沿趋势。</p>
+            <p>关注 AI、开发者工具与工程效率的前沿趋势。</p>
           </div>
         </div>
       </div>
     </section>
 
+    <section id="blog" class="section">
+      <div class="section-header reveal">
+        <span class="section-tag">02 / Blog</span>
+        <h2>技术博客</h2>
+        <p class="section-desc">记录学习笔记、工程实践与思考。</p>
+      </div>
+      <div class="blog-grid">
+        <a href="blog/js-event-loop.html" class="blog-card glass reveal">
+          <div class="blog-meta">
+            <time datetime="2026-05-12">2026-05-12</time>
+            <span class="blog-read">8 min</span>
+          </div>
+          <h3>深入理解 JavaScript 事件循环</h3>
+          <p>从调用栈到宏任务、微任务，彻底搞懂 async/await 背后的调度机制。</p>
+          <div class="blog-tags">
+            <span>JavaScript</span><span>Runtime</span>
+          </div>
+        </a>
+
+        <a href="blog/typescript-generics.html" class="blog-card glass reveal">
+          <div class="blog-meta">
+            <time datetime="2026-04-28">2026-04-28</time>
+            <span class="blog-read">6 min</span>
+          </div>
+          <h3>TypeScript 泛型：从入门到实践</h3>
+          <p>用真实场景理解泛型约束、条件类型与工具类型的设计思路。</p>
+          <div class="blog-tags">
+            <span>TypeScript</span><span>类型系统</span>
+          </div>
+        </a>
+
+        <a href="blog/github-pages-guide.html" class="blog-card glass reveal">
+          <div class="blog-meta">
+            <time datetime="2026-04-15">2026-04-15</time>
+            <span class="blog-read">5 min</span>
+          </div>
+          <h3>GitHub Pages 静态站点部署指南</h3>
+          <p>从零搭建个人站点：仓库配置、自定义域名与 CI 自动部署。</p>
+          <div class="blog-tags">
+            <span>DevOps</span><span>GitHub</span>
+          </div>
+        </a>
+
+        <a href="blog/docker-frontend.html" class="blog-card glass reveal">
+          <div class="blog-meta">
+            <time datetime="2026-03-20">2026-03-20</time>
+            <span class="blog-read">7 min</span>
+          </div>
+          <h3>Docker 入门：前端开发者视角</h3>
+          <p>用 Dockerfile 多阶段构建打包前端项目，告别「在我机器上能跑」。</p>
+          <div class="blog-tags">
+            <span>Docker</span><span>前端工程化</span>
+          </div>
+        </a>
+
+        <a href="blog/css-grid-flexbox.html" class="blog-card glass reveal">
+          <div class="blog-meta">
+            <time datetime="2026-03-08">2026-03-08</time>
+            <span class="blog-read">6 min</span>
+          </div>
+          <h3>CSS Grid 与 Flexbox：如何选择</h3>
+          <p>一维布局用 Flex，二维布局用 Grid——附决策树与常见模式。</p>
+          <div class="blog-tags">
+            <span>CSS</span><span>布局</span>
+          </div>
+        </a>
+
+        <a href="blog/git-workflow.html" class="blog-card glass reveal">
+          <div class="blog-meta">
+            <time datetime="2026-02-18">2026-02-18</time>
+            <span class="blog-read">5 min</span>
+          </div>
+          <h3>Git 工作流：Feature Branch 最佳实践</h3>
+          <p>分支命名、Commit 规范、PR Review 流程，让协作更顺畅。</p>
+          <div class="blog-tags">
+            <span>Git</span><span>协作</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
     <section id="skills" class="section">
       <div class="section-header reveal">
-        <span class="section-tag">02 / Skills</span>
+        <span class="section-tag">03 / Skills</span>
         <h2>技能栈</h2>
       </div>
       <div class="skills-grid">
         <div class="skill-card glass reveal">
           <div class="skill-header">
-            <span class="skill-icon">🖥️</span>
             <h4>前端开发</h4>
           </div>
           <div class="skill-bars">
@@ -140,7 +198,6 @@
         </div>
         <div class="skill-card glass reveal">
           <div class="skill-header">
-            <span class="skill-icon">⚙️</span>
             <h4>后端 & 工具</h4>
           </div>
           <div class="skill-bars">
@@ -151,7 +208,6 @@
         </div>
         <div class="skill-card glass reveal">
           <div class="skill-header">
-            <span class="skill-icon">🎨</span>
             <h4>设计与创意</h4>
           </div>
           <div class="skill-bars">
@@ -175,14 +231,14 @@
 
     <section id="projects" class="section">
       <div class="section-header reveal">
-        <span class="section-tag">03 / Projects</span>
+        <span class="section-tag">04 / Projects</span>
         <h2>精选项目</h2>
       </div>
       <div class="projects-grid">
         <article class="project-card glass reveal">
           <div class="project-glow"></div>
           <div class="project-top">
-            <span class="project-icon">🌐</span>
+            <span class="project-label">Web</span>
             <div class="project-links">
               <a href="https://github.com/abcdzyone/windy.github.io" target="_blank" rel="noopener" aria-label="GitHub">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -190,7 +246,7 @@
             </div>
           </div>
           <h3>windy.github.io</h3>
-          <p>个人主页 — 粒子动效、玻璃拟态与滚动动画，展示开发者身份的数字名片。</p>
+          <p>个人主页与技术博客，粒子动效与滚动动画，展示开发者身份的数字名片。</p>
           <div class="project-tags">
             <span>HTML</span><span>CSS</span><span>JavaScript</span>
           </div>
@@ -199,7 +255,7 @@
         <article class="project-card glass reveal">
           <div class="project-glow project-glow-purple"></div>
           <div class="project-top">
-            <span class="project-icon">🔒</span>
+            <span class="project-label">Network</span>
             <div class="project-links">
               <a href="https://github.com/abcdzyone/Free-V2ray-Config" target="_blank" rel="noopener" aria-label="GitHub">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -216,13 +272,13 @@
         <article class="project-card glass reveal project-card-soon">
           <div class="project-glow project-glow-cyan"></div>
           <div class="project-top">
-            <span class="project-icon">🚀</span>
+            <span class="project-label">WIP</span>
             <span class="soon-badge">Coming Soon</span>
           </div>
           <h3>下一个项目</h3>
-          <p>正在酝酿中… 也许是 AI 工具、开发者效率插件，或一款有趣的小游戏。</p>
+          <p>正在酝酿中，也许是 AI 工具、开发者效率插件，或一款有趣的小应用。</p>
           <div class="project-tags">
-            <span>AI</span><span>Tools</span><span>?</span>
+            <span>AI</span><span>Tools</span>
           </div>
         </article>
       </div>
@@ -230,7 +286,7 @@
 
     <section id="contact" class="section">
       <div class="section-header reveal">
-        <span class="section-tag">04 / Contact</span>
+        <span class="section-tag">05 / Contact</span>
         <h2>保持联系</h2>
       </div>
       <div class="contact-wrap reveal">
