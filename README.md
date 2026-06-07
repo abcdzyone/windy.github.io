@@ -1,12 +1,12 @@
 # WINDY · Digital Archive
 
-个人档案馆，PC 首屏单页布局，部署于 GitHub Pages。
+个人档案馆，PC 端杂志风格多板块布局，部署于 GitHub Pages。
 
 **在线预览：** https://abcdzyone.github.io/windy.github.io/
 
 ## 设计
 
-- 单屏 PC 布局：Header → Hero → Latest Update → 6 栏分类网格 → Footer
+- PC 布局：Header → Hero → Latest Update → 6 栏索引 → 详情板块 → Footer
 - 半色调（Halftone）印刷风格图片处理
 - 米白纸张配色 + 黑色文字，Inter / Noto Sans SC 字体
 

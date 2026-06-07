@@ -31,12 +31,12 @@
     <header class="site-header">
       <a href="#" class="brand">WINDY<span class="brand-dot">.</span></a>
       <nav class="site-nav" aria-label="主导航">
-        <a href="#about">ABOUT</a>
-        <a href="#projects">PROJECTS</a>
-        <a href="#writing">WRITING</a>
-        <a href="#reading">READING</a>
-        <a href="#notes">NOTES</a>
-        <a href="#timeline">TIMELINE</a>
+        <a href="#section-about">ABOUT</a>
+        <a href="#section-projects">PROJECTS</a>
+        <a href="#section-writing">WRITING</a>
+        <a href="#section-reading">READING</a>
+        <a href="#section-notes">NOTES</a>
+        <a href="#section-timeline">TIMELINE</a>
       </nav>
       <a href="https://github.com/abcdzyone" target="_blank" rel="noopener" class="btn-github">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -79,77 +79,228 @@
     <div class="ticker">
       <span class="ticker-badge">LATEST UPDATE · 2026.06.01</span>
       <a href="blog/agents-changing-dev.html" class="ticker-title">为什么 Agent 正在改变软件开发</a>
-      <a href="#writing" class="ticker-more">VIEW ALL →</a>
+      <a href="#section-writing" class="ticker-more">VIEW ALL →</a>
     </div>
 
-    <!-- Category Grid -->
-    <section class="category-grid">
-      <article class="category-card" id="about">
+    <!-- Category Grid (index) -->
+    <section class="category-grid" aria-label="栏目索引">
+      <article class="category-card">
         <span class="cat-num">001</span>
         <h2 class="cat-title">ABOUT</h2>
         <p class="cat-desc">关注软件工程、人工智能与知识管理。用系统化思维组织数字生活，在技术与人文之间寻找平衡。</p>
-        <a href="#about" class="cat-link">READ MORE →</a>
+        <a href="#section-about" class="cat-link">READ MORE →</a>
         <div class="cat-image">
           <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=280&fit=crop&q=80" alt="" class="halftone-img" loading="lazy" />
           <div class="halftone-overlay" aria-hidden="true"></div>
         </div>
       </article>
 
-      <article class="category-card" id="projects">
+      <article class="category-card">
         <span class="cat-num">002</span>
         <h2 class="cat-title">PROJECTS</h2>
         <p class="cat-desc">AI Agent Lab、知识管理系统、自动化工具链与开源 side project。从原型到部署的完整工程实践。</p>
-        <a href="https://github.com/abcdzyone" target="_blank" rel="noopener" class="cat-link">EXPLORE →</a>
+        <a href="#section-projects" class="cat-link">EXPLORE →</a>
         <div class="cat-image">
           <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=280&fit=crop&q=80" alt="" class="halftone-img" loading="lazy" />
           <div class="halftone-overlay" aria-hidden="true"></div>
         </div>
       </article>
 
-      <article class="category-card" id="writing">
+      <article class="category-card">
         <span class="cat-num">003</span>
         <h2 class="cat-title">WRITING</h2>
         <p class="cat-desc">技术洞察、工程实践与思考笔记。记录 Agent 时代开发范式的转变，以及工具如何重塑创造力。</p>
-        <a href="blog/agents-changing-dev.html" class="cat-link">READ POSTS →</a>
+        <a href="#section-writing" class="cat-link">READ POSTS →</a>
         <div class="cat-image">
           <img src="https://images.unsplash.com/photo-1455390219741-b61f56d5c722?w=400&h=280&fit=crop&q=80" alt="" class="halftone-img" loading="lazy" />
           <div class="halftone-overlay" aria-hidden="true"></div>
         </div>
       </article>
 
-      <article class="category-card" id="reading">
+      <article class="category-card">
         <span class="cat-num">004</span>
         <h2 class="cat-title">READING</h2>
         <p class="cat-desc">技术、历史、哲学、商业与 AI 领域的阅读档案。每本书都是一次认知升级，笔记沉淀为可检索的知识节点。</p>
-        <a href="#reading" class="cat-link">BROWSE →</a>
+        <a href="#section-reading" class="cat-link">BROWSE →</a>
         <div class="cat-image">
           <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=280&fit=crop&q=80" alt="" class="halftone-img" loading="lazy" />
           <div class="halftone-overlay" aria-hidden="true"></div>
         </div>
       </article>
 
-      <article class="category-card" id="notes">
+      <article class="category-card">
         <span class="cat-num">005</span>
         <h2 class="cat-title">NOTES</h2>
         <p class="cat-desc">灵感碎片、日常观察与快速记录。Obsidian 双向链接 + Git 版本控制，构建个人第二大脑的日常输入层。</p>
-        <a href="blog/knowledge-system.html" class="cat-link">OPEN NOTES →</a>
+        <a href="#section-notes" class="cat-link">OPEN NOTES →</a>
         <div class="cat-image">
           <img src="https://images.unsplash.com/photo-1511920170033-f8396924c10b?w=400&h=280&fit=crop&q=80" alt="" class="halftone-img" loading="lazy" />
           <div class="halftone-overlay" aria-hidden="true"></div>
         </div>
       </article>
 
-      <article class="category-card" id="timeline">
+      <article class="category-card">
         <span class="cat-num">006</span>
         <h2 class="cat-title">TIMELINE</h2>
         <p class="cat-desc">2020 起步 · 2023 入行 · 2024 知识库 · 2025 大模型 · 2026 Agent 项目。每一步都是下一次跃迁的基石。</p>
-        <a href="#timeline" class="cat-link">VIEW HISTORY →</a>
+        <a href="#section-timeline" class="cat-link">VIEW HISTORY →</a>
         <div class="cat-image">
           <img src="https://images.unsplash.com/photo-1493612276213-ee3925520722?w=400&h=280&fit=crop&q=80" alt="" class="halftone-img" loading="lazy" />
           <div class="halftone-overlay" aria-hidden="true"></div>
         </div>
       </article>
     </section>
+
+    <!-- Detail Sections -->
+    <div class="content-sections">
+      <section class="detail-section" id="section-about">
+        <header class="detail-header">
+          <span class="detail-num">001</span>
+          <h2 class="detail-title">ABOUT</h2>
+        </header>
+        <div class="detail-body two-col">
+          <div>
+            <h3 class="detail-subtitle">我关注什么</h3>
+            <ul class="detail-list">
+              <li><strong>软件工程</strong> — 构建可靠、可维护的系统，追求工程卓越</li>
+              <li><strong>人工智能</strong> — 探索大模型与 Agent，融入开发工作流</li>
+              <li><strong>知识管理</strong> — PARA + 双向链接，连接输入与输出</li>
+              <li><strong>数字生活</strong> — 自动化日常，用工具释放创造力</li>
+              <li><strong>阅读与写作</strong> — 持续记录技术观察与思考轨迹</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="detail-subtitle">关于我</h3>
+            <p class="detail-text">独立开发者，2020 年开始系统学习编程，2023 年进入软件行业。相信技术与人文并不矛盾——好的代码应该像出版物一样，结构清晰、经得起时间检验。目前在探索 AI Agent 如何重塑软件开发范式，同时维护个人知识库与开源项目。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="detail-section" id="section-projects">
+        <header class="detail-header">
+          <span class="detail-num">002</span>
+          <h2 class="detail-title">PROJECTS</h2>
+        </header>
+        <div class="project-grid">
+          <article class="project-item">
+            <span class="project-num">01</span>
+            <h3 class="project-name">AI Agent Lab</h3>
+            <p class="project-desc">实验性 Agent 开发实验室：LLM 自主任务执行、MCP 工具集成、多 Agent 协作工作流。</p>
+            <span class="project-tags">AI · Agent · MCP</span>
+          </article>
+          <article class="project-item">
+            <span class="project-num">02</span>
+            <h3 class="project-name">Knowledge System</h3>
+            <p class="project-desc">基于 Obsidian + Git 的个人知识库，PARA 方法论、渐进式摘要、定期回顾与输出链路。</p>
+            <span class="project-tags">PKM · Obsidian</span>
+          </article>
+          <article class="project-item">
+            <span class="project-num">03</span>
+            <h3 class="project-name">Automation Toolkit</h3>
+            <p class="project-desc">Git 工作流脚本、文档同步、CI 模板与批处理工具，减少重复劳动。</p>
+            <span class="project-tags">DevOps · Scripts</span>
+          </article>
+          <article class="project-item">
+            <span class="project-num">04</span>
+            <h3 class="project-name">windy.github.io</h3>
+            <p class="project-desc">个人档案馆站点，Digital Archive 设计风格，GitHub Pages 部署。</p>
+            <span class="project-tags">HTML · CSS</span>
+          </article>
+          <article class="project-item">
+            <span class="project-num">05</span>
+            <h3 class="project-name">Free-V2ray-Config</h3>
+            <p class="project-desc">开源网络配置集合，帮助用户安全便捷访问互联网。</p>
+            <span class="project-tags">Open Source</span>
+          </article>
+          <article class="project-item">
+            <span class="project-num">06</span>
+            <h3 class="project-name">WIP · Next Tool</h3>
+            <p class="project-desc">酝酿中的开发者效率插件，也许是 AI 驱动的代码审查或文档生成工具。</p>
+            <span class="project-tags">WIP · AI</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="detail-section" id="section-writing">
+        <header class="detail-header">
+          <span class="detail-num">003</span>
+          <h2 class="detail-title">WRITING</h2>
+        </header>
+        <ul class="article-grid">
+          <li><a href="blog/agents-changing-dev.html"><time datetime="2026-06-01">2026.06.01</time><span>为什么 Agent 正在改变软件开发</span><em>AI · Agent</em></a></li>
+          <li><a href="blog/cursor-observations.html"><time datetime="2026-05-20">2026.05.20</time><span>Cursor 使用半年的观察</span><em>Cursor · Tools</em></a></li>
+          <li><a href="blog/knowledge-system.html"><time datetime="2026-05-01">2026.05.01</time><span>我的知识管理体系</span><em>PKM · Obsidian</em></a></li>
+          <li><a href="blog/js-event-loop.html"><time datetime="2026-05-12">2026.05.12</time><span>深入理解 JavaScript 事件循环</span><em>JavaScript</em></a></li>
+          <li><a href="blog/typescript-generics.html"><time datetime="2026-04-28">2026.04.28</time><span>TypeScript 泛型：从入门到实践</span><em>TypeScript</em></a></li>
+          <li><a href="blog/github-pages-guide.html"><time datetime="2026-04-15">2026.04.15</time><span>GitHub Pages 静态站点部署指南</span><em>DevOps</em></a></li>
+          <li><a href="blog/docker-frontend.html"><time datetime="2026-03-20">2026.03.20</time><span>Docker 入门：前端开发者视角</span><em>Docker</em></a></li>
+          <li><a href="blog/css-grid-flexbox.html"><time datetime="2026-03-08">2026.03.08</time><span>CSS Grid 与 Flexbox：如何选择</span><em>CSS</em></a></li>
+          <li><a href="blog/git-workflow.html"><time datetime="2026-02-18">2026.02.18</time><span>Git 工作流：Feature Branch 最佳实践</span><em>Git</em></a></li>
+        </ul>
+      </section>
+
+      <section class="detail-section" id="section-reading">
+        <header class="detail-header">
+          <span class="detail-num">004</span>
+          <h2 class="detail-title">READING</h2>
+        </header>
+        <div class="reading-grid">
+          <div class="reading-col">
+            <h3 class="reading-cat">技术</h3>
+            <ul><li>深入理解计算机系统 <cite>Bryant</cite></li><li>Designing Data-Intensive Applications <cite>Kleppmann</cite></li><li>Clean Code <cite>Martin</cite></li><li>重构 <cite>Fowler</cite></li></ul>
+          </div>
+          <div class="reading-col">
+            <h3 class="reading-cat">历史</h3>
+            <ul><li>人类简史 <cite>Harari</cite></li><li>枪炮、病菌与钢铁 <cite>Diamond</cite></li><li>万历十五年 <cite>黄仁宇</cite></li></ul>
+          </div>
+          <div class="reading-col">
+            <h3 class="reading-cat">哲学</h3>
+            <ul><li>沉思录 <cite>Aurelius</cite></li><li>哲学问题 <cite>Russell</cite></li><li>苏菲的世界 <cite>Gaarder</cite></li></ul>
+          </div>
+          <div class="reading-col">
+            <h3 class="reading-cat">商业</h3>
+            <ul><li>从 0 到 1 <cite>Thiel</cite></li><li>创新者的窘境 <cite>Christensen</cite></li><li>原则 <cite>Dalio</cite></li></ul>
+          </div>
+          <div class="reading-col">
+            <h3 class="reading-cat">圣经</h3>
+            <ul><li>圣经 <cite>旧约·新约</cite></li><li>天路历程 <cite>Bunyan</cite></li><li>属灵操练礼赞 <cite>Foster</cite></li></ul>
+          </div>
+          <div class="reading-col">
+            <h3 class="reading-cat">人工智能</h3>
+            <ul><li>Life 3.0 <cite>Tegmark</cite></li><li>AI Superpowers <cite>Kai-Fu Lee</cite></li><li>The Alignment Problem <cite>Christian</cite></li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="detail-section" id="section-notes">
+        <header class="detail-header">
+          <span class="detail-num">005</span>
+          <h2 class="detail-title">NOTES</h2>
+        </header>
+        <ul class="notes-list">
+          <li><time>2026.06.05</time><p>Agent 工作流的关键不是自动化一切，而是找到人机协作的最优分工点。</p></li>
+          <li><time>2026.05.28</time><p>好的知识管理系统应该降低记录摩擦，而不是增加整理负担。</p></li>
+          <li><time>2026.05.15</time><p>代码审查在 AI 时代变得更加重要——生成容易，判断难。</p></li>
+          <li><time>2026.05.02</time><p>尝试用 PARA 重新组织 Obsidian vault，Projects 和 Areas 的边界需要持续调整。</p></li>
+          <li><time>2026.04.20</time><p>阅读《设计数据密集型应用》第三章，对分布式系统有了更深的敬畏。</p></li>
+          <li><time>2026.04.08</time><p>Git hooks + AI review 是一个值得深入的方向。</p></li>
+        </ul>
+      </section>
+
+      <section class="detail-section" id="section-timeline">
+        <header class="detail-header">
+          <span class="detail-num">006</span>
+          <h2 class="detail-title">TIMELINE</h2>
+        </header>
+        <ol class="timeline-detail">
+          <li><span class="tl-year">2026</span><div><strong>AI Agent Project</strong><p>启动 AI Agent Lab，探索 MCP 协议与 Cursor Agent 工作流，重构个人站点为 Digital Archive。</p></div></li>
+          <li><span class="tl-year">2025</span><div><strong>探索大模型</strong><p>深度使用 Cursor、Claude、GPT，将 AI 融入日常开发与写作流程。</p></div></li>
+          <li><span class="tl-year">2024</span><div><strong>构建知识库</strong><p>建立 Obsidian + Git 知识管理系统，实践 PARA 方法论与渐进式摘要。</p></div></li>
+          <li><span class="tl-year">2023</span><div><strong>进入软件行业</strong><p>从自学转向全职开发，参与多个 Web 项目，建立工程化思维。</p></div></li>
+          <li><span class="tl-year">2020</span><div><strong>起步</strong><p>开始系统学习编程，创建 GitHub 账号，发布第一个开源仓库。</p></div></li>
+        </ol>
+      </section>
+    </div>
 
     <!-- Footer -->
     <footer class="site-footer">
