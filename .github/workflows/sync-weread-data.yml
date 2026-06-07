@@ -1,0 +1,36 @@
+name: Sync WeRead public data
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch and sanitize API data
+        env:
+          WEREAD_API_BASE: ${{ secrets.WEREAD_API_BASE }}
+        run: node scripts/sync-weread-public.mjs
+
+      - name: Commit snapshot if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/weread-public.json
+          if git diff --staged --quiet; then
+            echo "No changes"
+          else
+            git commit -m "chore: sync weread public data snapshot"
+            git push
+          fi

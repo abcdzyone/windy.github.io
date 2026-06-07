@@ -1,0 +1,125 @@
+#!/usr/bin/env node
+/**
+ * Fetches weread hub data and writes sanitized public snapshot.
+ * API URL only via env WEREAD_API_BASE (never committed to frontend).
+ */
+import { writeFileSync, mkdirSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const BASE = (process.env.WEREAD_API_BASE || '').replace(/\/$/, '');
+const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'data', 'weread-public.json');
+
+if (!BASE) {
+  console.error('WEREAD_API_BASE is required');
+  process.exit(1);
+}
+
+async function get(path) {
+  const res = await fetch(`${BASE}${path}`);
+  if (!res.ok) throw new Error(`${path} → HTTP ${res.status}`);
+  return res.json();
+}
+
+function trunc(text, max = 96) {
+  if (!text || typeof text !== 'string') return '';
+  const t = text.replace(/\s+/g, ' ').trim();
+  return t.length <= max ? t : `${t.slice(0, max)}…`;
+}
+
+function bookTitle(fragment) {
+  if (!fragment.sourceMeta) return null;
+  try {
+    const meta = JSON.parse(fragment.sourceMeta);
+    return meta.bookTitle?.replace(/^《/, '').replace(/》$/, '') || null;
+  } catch {
+    return null;
+  }
+}
+
+function extractSummary(markdown) {
+  if (!markdown || typeof markdown !== 'string') return '';
+  const block = markdown.split('\n\n').find(p => p.includes('总阅读时长') || p.includes('上周'));
+  return trunc(block || markdown.split('\n\n')[1] || markdown, 160);
+}
+
+function sanitizeHealth(raw) {
+  return {
+    status: raw.gatewayOk ? 'online' : 'degraded',
+    skillVersion: raw.skillVersion || '—'
+  };
+}
+
+function sanitizeWeekly(raw) {
+  const report = raw?.report;
+  const stats = report?.stats;
+  if (!stats) return null;
+
+  const topBooks = (stats.readLongest || [])
+    .map(item => item?.book?.title)
+    .filter(Boolean)
+    .slice(0, 3);
+
+  return {
+    weekLabel: report.weekLabel || '—',
+    totalMinutes: Math.round((stats.totalReadTime || 0) / 60),
+    dailyAverageMinutes: Math.round((stats.dayAverageReadTime || 0) / 60),
+    readDays: stats.readDays ?? 0,
+    topBooks,
+    summary: extractSummary(report.markdown)
+  };
+}
+
+function sanitizeFragments(list) {
+  const arr = Array.isArray(list) ? list : [];
+  const recent = arr
+    .slice()
+    .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+    .slice(0, 3)
+    .map(f => ({
+      type: f.type,
+      content: trunc(f.content, 80),
+      book: bookTitle(f),
+      date: f.updatedAt?.slice(0, 10) || null
+    }));
+
+  return { total: arr.length, recent };
+}
+
+function sanitizeJournal(raw) {
+  const items = raw?.items || [];
+  return items.slice(0, 3).map(j => ({
+    content: trunc(j.content, 100),
+    date: j.createdAt?.slice(0, 10) || null
+  }));
+}
+
+async function main() {
+  const [health, weekly, fragments, journal] = await Promise.all([
+    get('/api/health'),
+    get('/api/weekly-report').catch(() => null),
+    get('/api/fragments').catch(() => []),
+    get('/api/journal/timeline?limit=3').catch(() => ({ items: [] }))
+  ]);
+
+  const snapshot = {
+    updatedAt: new Date().toISOString(),
+    platform: {
+      name: 'WeRead Reading Hub',
+      ...sanitizeHealth(health)
+    },
+    reading: sanitizeWeekly(weekly),
+    fragments: sanitizeFragments(fragments),
+    journal: sanitizeJournal(journal)
+  };
+
+  mkdirSync(dirname(OUT), { recursive: true });
+  writeFileSync(OUT, `${JSON.stringify(snapshot, null, 2)}\n`, 'utf8');
+  console.log(`Wrote ${OUT}`);
+  console.log(JSON.stringify(snapshot, null, 2));
+}
+
+main().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
