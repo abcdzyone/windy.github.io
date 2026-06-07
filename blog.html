@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>博客 · WINDY Tech Journal</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { primary: '#000', 'on-primary': '#fff', surface: '#fff', 'on-surface': '#000', outline: '#000' },
+          borderRadius: { DEFAULT: '0px' },
+          spacing: { gutter: '24px', 'stack-md': '1rem', 'stack-lg': '2rem' },
+          fontFamily: { mono: ['JetBrains Mono', 'monospace'] },
+          fontSize: {
+            'headline-xl': ['48px', { lineHeight: '1.1', fontWeight: '800' }],
+            'headline-lg': ['32px', { lineHeight: '1.2', fontWeight: '700' }],
+            'body-lg': ['18px', { lineHeight: '1.6' }],
+            'body-md': ['16px', { lineHeight: '1.5' }],
+            'label-bold': ['14px', { fontWeight: '700' }],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="font-mono text-on-surface halftone-page">
+
+<header class="fixed top-0 w-full z-50 bg-white border-b-4 border-black" data-header>
+  <div class="flex justify-between items-center h-16 px-gutter max-w-[1200px] mx-auto">
+    <a href="index.html" class="text-headline-lg font-extrabold uppercase">WINDY</a>
+    <nav class="hidden md:flex items-center gap-8">
+      <a class="text-label-bold hover:underline decoration-4" href="index.html">首页</a>
+      <a class="text-label-bold underline decoration-4 underline-offset-4" href="blog.html">博客</a>
+      <a class="text-label-bold hover:underline decoration-4" href="about.html">关于</a>
+    </nav>
+    <button id="theme-toggle" class="p-2 hover:bg-black hover:text-white transition-colors border-2 border-black">
+      <span class="material-symbols-outlined">dark_mode</span>
+    </button>
+  </div>
+</header>
+
+<main class="mt-24 mb-24">
+  <div class="max-w-[1200px] mx-auto px-gutter">
+    <div class="mb-12">
+      <h1 class="text-headline-xl mb-4 bg-white inline-block px-4 border-4 border-black">全部文章</h1>
+      <p class="text-body-lg bg-white p-4 border-2 border-black max-w-[800px]">工程实践、AI 探索与知识管理——为现代开发者记录的技术故事。</p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      <div class="lg:w-3/4 space-y-8" id="article-list">
+
+        <article class="article-card group heavy-border p-6" data-article>
+          <a href="blog/agents-changing-dev.html" class="flex flex-col gap-4">
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="text-label-bold bg-black text-white px-3 py-1">2026.06.01</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 halftone-bg bg-black text-white">#AI</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 halftone-bg bg-black text-white">#AGENT</span>
+            </div>
+            <h2 class="text-headline-lg uppercase group-hover:bg-black group-hover:text-white transition-colors p-1">为什么 Agent 正在改变软件开发</h2>
+            <p class="text-body-md line-clamp-2">从 Copilot 到自主执行：第三代 AI 编程范式如何重塑开发者角色与工程实践。</p>
+            <span class="flex items-center gap-2 text-label-bold uppercase border-b-4 border-black w-fit">阅读全文 <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+          </a>
+        </article>
+
+        <article class="article-card group heavy-border p-6" data-article>
+          <a href="blog/cursor-observations.html" class="flex flex-col gap-4">
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="text-label-bold bg-black text-white px-3 py-1">2026.05.20</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 bg-black text-white">#CURSOR</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 bg-black text-white">#TOOLS</span>
+            </div>
+            <h2 class="text-headline-lg uppercase group-hover:bg-black group-hover:text-white transition-colors p-1">Cursor 使用半年的观察</h2>
+            <p class="text-body-md line-clamp-2">半年深度使用后的真实体验：什么有效、什么 hype、如何建立可持续的 AI 辅助工作流。</p>
+            <span class="flex items-center gap-2 text-label-bold uppercase border-b-4 border-black w-fit">阅读全文 <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+          </a>
+        </article>
+
+        <article class="article-card group heavy-border p-6" data-article>
+          <a href="blog/knowledge-system.html" class="flex flex-col gap-4">
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="text-label-bold bg-black text-white px-3 py-1">2026.05.01</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 bg-black text-white">#PKM</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 bg-black text-white">#OBSIDIAN</span>
+            </div>
+            <h2 class="text-headline-lg uppercase group-hover:bg-black group-hover:text-white transition-colors p-1">我的知识管理体系</h2>
+            <p class="text-body-md line-clamp-2">PARA + 双向链接 + Git 版本控制：构建可检索、可输出的个人第二大脑。</p>
+            <span class="flex items-center gap-2 text-label-bold uppercase border-b-4 border-black w-fit">阅读全文 <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+          </a>
+        </article>
+
+        <article class="article-card group heavy-border p-6" data-article>
+          <a href="blog/js-event-loop.html" class="flex flex-col gap-4">
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="text-label-bold bg-black text-white px-3 py-1">2026.05.12</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 bg-black text-white">#JAVASCRIPT</span>
+            </div>
+            <h2 class="text-headline-lg uppercase group-hover:bg-black group-hover:text-white transition-colors p-1">深入理解 JavaScript 事件循环</h2>
+            <p class="text-body-md line-clamp-2">宏任务、微任务与渲染时机——用具体例子拆解 Event Loop 的执行顺序。</p>
+            <span class="flex items-center gap-2 text-label-bold uppercase border-b-4 border-black w-fit">阅读全文 <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+          </a>
+        </article>
+
+        <article class="article-card group heavy-border p-6" data-article>
+          <a href="blog/typescript-generics.html" class="flex flex-col gap-4">
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="text-label-bold bg-black text-white px-3 py-1">2026.04.28</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 bg-black text-white">#TYPESCRIPT</span>
+            </div>
+            <h2 class="text-headline-lg uppercase group-hover:bg-black group-hover:text-white transition-colors p-1">TypeScript 泛型：从入门到实践</h2>
+            <p class="text-body-md line-clamp-2">泛型约束、条件类型与 infer——在 API 层构建类型安全的抽象。</p>
+            <span class="flex items-center gap-2 text-label-bold uppercase border-b-4 border-black w-fit">阅读全文 <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+          </a>
+        </article>
+
+        <article class="article-card group heavy-border p-6" data-article>
+          <a href="blog/github-pages-guide.html" class="flex flex-col gap-4">
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="text-label-bold bg-black text-white px-3 py-1">2026.04.15</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 bg-black text-white">#DEVOPS</span>
+            </div>
+            <h2 class="text-headline-lg uppercase group-hover:bg-black group-hover:text-white transition-colors p-1">GitHub Pages 静态站点部署指南</h2>
+            <p class="text-body-md line-clamp-2">从零到上线：仓库配置、自定义域名与 CI 自动化部署流程。</p>
+            <span class="flex items-center gap-2 text-label-bold uppercase border-b-4 border-black w-fit">阅读全文 <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+          </a>
+        </article>
+
+        <article class="article-card group heavy-border p-6" data-article>
+          <a href="blog/docker-frontend.html" class="flex flex-col gap-4">
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="text-label-bold bg-black text-white px-3 py-1">2026.03.20</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 bg-black text-white">#DOCKER</span>
+            </div>
+            <h2 class="text-headline-lg uppercase group-hover:bg-black group-hover:text-white transition-colors p-1">Docker 入门：前端开发者视角</h2>
+            <p class="text-body-md line-clamp-2">容器化前端开发与部署：Dockerfile 最佳实践与多阶段构建。</p>
+            <span class="flex items-center gap-2 text-label-bold uppercase border-b-4 border-black w-fit">阅读全文 <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+          </a>
+        </article>
+
+        <article class="article-card group heavy-border p-6" data-article>
+          <a href="blog/css-grid-flexbox.html" class="flex flex-col gap-4">
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="text-label-bold bg-black text-white px-3 py-1">2026.03.08</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 bg-black text-white">#CSS</span>
+            </div>
+            <h2 class="text-headline-lg uppercase group-hover:bg-black group-hover:text-white transition-colors p-1">CSS Grid 与 Flexbox：如何选择</h2>
+            <p class="text-body-md line-clamp-2">一维 vs 二维布局：决策树与常见模式的对比分析。</p>
+            <span class="flex items-center gap-2 text-label-bold uppercase border-b-4 border-black w-fit">阅读全文 <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+          </a>
+        </article>
+
+        <article class="article-card group heavy-border p-6" data-article>
+          <a href="blog/git-workflow.html" class="flex flex-col gap-4">
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="text-label-bold bg-black text-white px-3 py-1">2026.02.18</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 bg-black text-white">#GIT</span>
+            </div>
+            <h2 class="text-headline-lg uppercase group-hover:bg-black group-hover:text-white transition-colors p-1">Git 工作流：Feature Branch 最佳实践</h2>
+            <p class="text-body-md line-clamp-2">分支策略、PR 规范与 CI 集成——小团队的高效协作模式。</p>
+            <span class="flex items-center gap-2 text-label-bold uppercase border-b-4 border-black w-fit">阅读全文 <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+          </a>
+        </article>
+
+        <div class="pt-12 flex justify-center">
+          <nav class="flex items-center gap-2">
+            <button class="w-12 h-12 flex items-center justify-center border-4 border-black bg-white hover:bg-black hover:text-white transition-colors" disabled>
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button class="w-12 h-12 flex items-center justify-center border-4 border-black bg-black text-white font-bold">1</button>
+            <button class="w-12 h-12 flex items-center justify-center border-4 border-black bg-white hover:bg-black hover:text-white font-bold">2</button>
+            <button class="w-12 h-12 flex items-center justify-center border-4 border-black bg-white hover:bg-black hover:text-white transition-colors">
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </nav>
+        </div>
+      </div>
+
+      <aside class="lg:w-1/4 space-y-8">
+        <div class="bg-white p-6 border-4 border-black">
+          <h3 class="text-label-bold mb-4 uppercase">搜索</h3>
+          <div class="relative">
+            <input id="blog-search" class="w-full bg-white border-4 border-black px-4 py-3 text-body-md focus:outline-none focus:bg-black focus:text-white transition-all placeholder:text-black/50" placeholder="关键词..." type="text" />
+            <span class="material-symbols-outlined absolute right-3 top-3.5">search</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 border-4 border-black">
+          <h3 class="text-label-bold mb-4 uppercase">分类</h3>
+          <ul class="space-y-4">
+            <li><a class="flex justify-between items-center font-bold hover:bg-black hover:text-white p-1 transition-colors" href="#">AI / AGENT <span class="border-2 border-black bg-black text-white px-2 text-[10px]">04</span></a></li>
+            <li><a class="flex justify-between items-center font-bold hover:bg-black hover:text-white p-1 transition-colors" href="#">前端 <span class="border-2 border-black bg-black text-white px-2 text-[10px]">06</span></a></li>
+            <li><a class="flex justify-between items-center font-bold hover:bg-black hover:text-white p-1 transition-colors" href="#">工程化 <span class="border-2 border-black bg-black text-white px-2 text-[10px]">05</span></a></li>
+            <li><a class="flex justify-between items-center font-bold hover:bg-black hover:text-white p-1 transition-colors" href="#">知识管理 <span class="border-2 border-black bg-black text-white px-2 text-[10px]">03</span></a></li>
+            <li><a class="flex justify-between items-center font-bold hover:bg-black hover:text-white p-1 transition-colors" href="#">工具 <span class="border-2 border-black bg-black text-white px-2 text-[10px]">04</span></a></li>
+          </ul>
+        </div>
+
+        <div class="bg-black text-white p-6 border-4 border-black halftone-bg">
+          <h3 class="text-headline-lg mb-2 bg-white text-black px-2 inline-block">订阅</h3>
+          <p class="text-body-md mb-4">每周技术摘要，直达收件箱。</p>
+          <form class="space-y-3" data-newsletter>
+            <input class="w-full bg-black border-4 border-white px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:bg-white focus:text-black transition-all" placeholder="EMAIL" type="email" />
+            <button class="w-full bg-white text-black border-4 border-white font-bold py-3 hover:bg-black hover:text-white transition-all uppercase" type="submit">立即订阅</button>
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer class="w-full py-12 bg-white border-t-8 border-black">
+  <div class="flex flex-col md:flex-row justify-between items-center gap-8 px-gutter max-w-[1200px] mx-auto">
+    <div class="font-headline-lg font-extrabold bg-black text-white px-2">WINDY</div>
+    <p class="font-bold text-center">© 2026 WINDY · TECH JOURNAL</p>
+    <div class="flex gap-8">
+      <a class="font-bold hover:underline decoration-4" href="index.html">首页</a>
+      <a class="font-bold hover:underline decoration-4" href="https://github.com/abcdzyone">GITHUB</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

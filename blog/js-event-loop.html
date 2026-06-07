@@ -1,42 +1,125 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html class="light" lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>深入理解 JavaScript 事件循环 · Digital Archive</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <title>深入理解 JavaScript 事件循环 · WINDY</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/blog.css" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#000000',
+            'on-primary': '#ffffff',
+            surface: '#ffffff',
+            background: '#ffffff',
+            'on-surface': '#000000',
+            'on-background': '#000000',
+            outline: '#000000',
+          },
+          borderRadius: { DEFAULT: '0px', lg: '0px', xl: '0px' },
+          spacing: {
+            gutter: '24px',
+            'stack-sm': '0.5rem',
+            'stack-md': '1rem',
+            'stack-lg': '2rem',
+            'container-max': '1120px',
+            'section-gap': '5rem',
+            'content-max': '720px',
+          },
+          fontFamily: { mono: ['JetBrains Mono', 'monospace'] },
+          fontSize: {
+            display: ['48px', { lineHeight: '1.1', letterSpacing: '-0.04em', fontWeight: '800' }],
+            'headline-lg': ['32px', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
+            'headline-md': ['24px', { lineHeight: '1.3', fontWeight: '700' }],
+            'body-lg': ['18px', { lineHeight: '1.6' }],
+            'body-md': ['16px', { lineHeight: '1.5' }],
+            'label-caps': ['12px', { lineHeight: '1', letterSpacing: '0.05em', fontWeight: '700' }],
+          },
+        },
+      },
+    };
+  </script>
 </head>
-<body class="blog-page">
-  <div class="paper-grain" aria-hidden="true"></div>
+<body class="bg-background text-on-background font-mono halftone-page selection:bg-primary selection:text-on-primary">
 
-  <header class="blog-header">
-    <a href="../index.html" class="blog-logo">DIGITAL ARCHIVE.</a>
-    <a href="../index.html#writing" class="blog-nav-link">Articles</a>
-  </header>
+<header class="fixed top-0 w-full z-50 bg-surface border-b-4 border-outline transition-all duration-200" data-header>
+  <nav class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
+    <a href="../index.html" class="text-headline-md font-extrabold uppercase tracking-tighter">WINDY</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a class="text-label-caps hover:bg-primary hover:text-on-primary px-2 py-1 transition-colors" href="../index.html">首页</a>
+      <a class="text-label-caps bg-primary text-on-primary px-2 py-1" href="../blog.html">博客</a>
+      <a class="text-label-caps hover:bg-primary hover:text-on-primary px-2 py-1 transition-colors" href="../about.html">关于</a>
+    </div>
+    <div class="flex items-center gap-stack-md">
+      <button id="theme-toggle" class="p-2 border-2 border-outline hover:bg-primary hover:text-on-primary transition-colors" aria-label="切换主题">
+        <span class="material-symbols-outlined">contrast</span>
+      </button>
+      <button id="mobile-menu-btn" class="md:hidden p-2 border-2 border-outline">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </nav>
+  <div id="mobile-nav" class="hidden md:hidden border-t-2 border-outline bg-surface px-gutter py-4 space-y-2">
+    <a class="block text-label-caps py-2" href="../index.html">首页</a>
+    <a class="block text-label-caps py-2" href="../blog.html">博客</a>
+    <a class="block text-label-caps py-2" href="../about.html">关于</a>
+  </div>
+</header>
 
-  <main>
-    <article class="blog-article">
-      <a href="../index.html#writing" class="blog-back">← 返回文章列表</a>
-      <header>
-        <h1>深入理解 JavaScript 事件循环</h1>
-        <div class="article-meta">
-          <time datetime="2026-05-12">2026-05-12</time>
-          <span>8 min read</span>
-          <div class="article-tags">
-            <span>JavaScript</span><span>Runtime</span>
+<div class="reading-progress" id="progress-bar"></div>
+
+<main class="mt-24 px-gutter pb-section-gap">
+  <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-[1fr_720px_1fr] gap-12">
+
+    <aside class="hidden lg:block" data-toc>
+      <div class="sticky top-32 stippled-box border-2 border-black p-6 shadow-hard">
+        <p class="text-label-caps font-black border-b-2 border-black mb-4 pb-2 uppercase">目录</p>
+        <ul class="space-y-4">
+            <li><a class="text-body-md font-bold hover:underline decoration-4" href="#callstack-async">01. 调用栈与异步任务</a></li>
+            <li><a class="text-body-md font-bold hover:underline decoration-4" href="#event-loop-round">02. 事件循环的一轮</a></li>
+            <li><a class="text-body-md font-bold hover:underline decoration-4" href="#async-await">03. async/await 的本质</a></li>
+            <li><a class="text-body-md font-bold hover:underline decoration-4" href="#practice-tips">04. 实践建议</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <article class="max-w-[720px] mx-auto w-full">
+      <header class="mb-12">
+        <div class="flex flex-wrap items-center gap-4 mb-6">
+          <span class="bg-black text-white px-3 py-1 text-label-caps text-xs font-bold uppercase">JavaScript</span>
+          <time class="text-label-caps text-xs font-bold text-black/60" datetime="2026-05-12">2026.05.12</time>
+          <span class="text-label-caps border-2 border-black px-2 py-0.5 text-[10px] font-bold">#JavaScript</span>
+        </div>
+        <h1 class="text-headline-lg lg:text-display mb-8 leading-[1.05] tracking-tight uppercase">深入理解 JavaScript 事件循环</h1>
+        <div class="flex items-center gap-4 border-y-2 border-black py-6">
+          <img class="w-12 h-12 grayscale border-2 border-black object-cover" alt="Windy" src="https://avatars.githubusercontent.com/u/45551140?v=4" />
+          <div>
+            <p class="font-bold text-lg uppercase leading-none">Windy</p>
+            <p class="text-sm font-medium mt-1">5 min read</p>
           </div>
         </div>
       </header>
-      <div class="blog-content">
+
+      <div class="prose-blog">
         <p>JavaScript 是单线程语言，却能在浏览器中同时处理用户交互、网络请求和定时器。秘密就在于<strong>事件循环（Event Loop）</strong>——它协调调用栈、任务队列和微任务队列，决定代码何时执行。</p>
 
-        <h2>调用栈与异步任务</h2>
+        <h2 id="callstack-async">调用栈与异步任务</h2>
         <p>同步代码按顺序压入调用栈执行。遇到 <code>setTimeout</code>、<code>fetch</code>、<code>Promise</code> 等异步 API 时，回调不会立刻执行，而是被注册到对应的队列中，等待调用栈清空后再处理。</p>
-        <pre><code>console.log('1');
+        <div class="my-10 relative group border-4 border-black shadow-hard overflow-hidden" data-code-block>
+          <div class="bg-black text-white px-4 py-2 flex justify-between items-center border-b-2 border-black">
+            <span class="text-xs font-bold tracking-widest">CODE</span>
+            <button type="button" class="flex items-center gap-2 hover:bg-white hover:text-black px-2 py-0.5 transition-colors border border-transparent hover:border-black" onclick="copyCode(this)">
+              <span class="material-symbols-outlined text-sm">content_copy</span>
+              <span class="text-[10px] font-black" data-copy-label>复制</span>
+            </button>
+          </div>
+          <pre class="bg-white text-black p-6 font-mono text-sm overflow-x-auto m-0 border-0"><code>console.log('1');
 
 setTimeout(() => console.log('2'), 0);
 
@@ -44,9 +127,10 @@ Promise.resolve().then(() => console.log('3'));
 
 console.log('4');
 // 输出: 1 → 4 → 3 → 2</code></pre>
+        </div>
         <p>为什么 <code>3</code> 先于 <code>2</code>？因为 Promise 回调属于<strong>微任务（Microtask）</strong>，而 setTimeout 属于<strong>宏任务（Macrotask）</strong>。每一轮事件循环中，微任务会在下一个宏任务之前全部执行完毕。</p>
 
-        <h2>事件循环的一轮</h2>
+        <h2 id="event-loop-round">事件循环的一轮</h2>
         <ol>
           <li>执行当前宏任务（如 script、setTimeout 回调）</li>
           <li>调用栈清空后，执行所有微任务（Promise.then、queueMicrotask）</li>
@@ -54,9 +138,17 @@ console.log('4');
           <li>取下一个宏任务，重复</li>
         </ol>
 
-        <h2>async/await 的本质</h2>
+        <h2 id="async-await">async/await 的本质</h2>
         <p><code>await</code> 之后的代码会被编译成 Promise 的 <code>.then</code> 回调，因此属于微任务。理解这一点能解释很多「明明 await 了，顺序却不对」的 bug。</p>
-        <pre><code>async function demo() {
+        <div class="my-10 relative group border-4 border-black shadow-hard overflow-hidden" data-code-block>
+          <div class="bg-black text-white px-4 py-2 flex justify-between items-center border-b-2 border-black">
+            <span class="text-xs font-bold tracking-widest">CODE</span>
+            <button type="button" class="flex items-center gap-2 hover:bg-white hover:text-black px-2 py-0.5 transition-colors border border-transparent hover:border-black" onclick="copyCode(this)">
+              <span class="material-symbols-outlined text-sm">content_copy</span>
+              <span class="text-[10px] font-black" data-copy-label>复制</span>
+            </button>
+          </div>
+          <pre class="bg-white text-black p-6 font-mono text-sm overflow-x-auto m-0 border-0"><code>async function demo() {
   console.log('A');
   await Promise.resolve();
   console.log('B');
@@ -64,8 +156,9 @@ console.log('4');
 demo();
 console.log('C');
 // A → C → B</code></pre>
+        </div>
 
-        <h2>实践建议</h2>
+        <h2 id="practice-tips">实践建议</h2>
         <ul>
           <li>避免在微任务中执行耗时操作，会阻塞渲染</li>
           <li>大量 DOM 更新可分批用 <code>requestAnimationFrame</code> 或 <code>setTimeout(0)</code></li>
@@ -74,16 +167,52 @@ console.log('C');
 
         <blockquote>事件循环不是抽象概念，而是理解 JavaScript 并发模型的钥匙。掌握它，async 代码就不再是黑盒。</blockquote>
       </div>
-      <nav class="article-nav">
-        <a href="git-workflow.html">← Git 工作流</a>
-        <a href="typescript-generics.html" class="next">TypeScript 泛型 →</a>
-      </nav>
-    </article>
-  </main>
 
-  <footer class="blog-footer">
-    <p class="blog-footer-title">DIGITAL ARCHIVE.</p>
-    <p class="blog-footer-copy">© 2026 Windy</p>
-  </footer>
+      <section class="mt-24 pt-12 border-t-4 border-black">
+        <h3 class="text-headline-md mb-8 uppercase tracking-tighter">相关文章</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <a class="group block border-4 border-black p-6 hover:translate-x-1 hover:translate-y-1 hover:shadow-none shadow-hard transition-all duration-100 bg-white" href="typescript-generics.html">
+            <span class="bg-black text-white px-2 py-0.5 text-[10px] font-black uppercase">TypeScript</span>
+            <h4 class="font-bold text-xl mt-3 mb-2 group-hover:underline uppercase leading-tight">TypeScript 泛型：从入门到实践</h4>
+            <p class="text-sm font-medium line-clamp-2">类型参数、约束与 API 响应包装的实战指南...</p>
+          </a>
+          <a class="group block border-4 border-black p-6 hover:translate-x-1 hover:translate-y-1 hover:shadow-none shadow-hard transition-all duration-100 bg-white" href="git-workflow.html">
+            <span class="bg-black text-white px-2 py-0.5 text-[10px] font-black uppercase">Git</span>
+            <h4 class="font-bold text-xl mt-3 mb-2 group-hover:underline uppercase leading-tight">Git 工作流：Feature Branch 最佳实践</h4>
+            <p class="text-sm font-medium line-clamp-2">分支命名、PR 流程与协作规范...</p>
+          </a>
+        </div>
+      </section>
+    </article>
+
+    <aside class="hidden lg:block">
+      <div class="sticky top-32 stippled-box border-2 border-black p-6 shadow-hard bg-white">
+        <p class="text-label-caps text-xs font-black mb-2 uppercase border-b-2 border-black pb-1">订阅</p>
+        <p class="text-sm font-bold mb-6">每周技术摘要，直达收件箱。</p>
+        <form class="space-y-4" data-newsletter>
+          <input class="w-full bg-white border-2 border-black p-3 text-sm font-bold focus:bg-black focus:text-white transition-all outline-none placeholder:text-black/50" placeholder="EMAIL" type="email" required />
+          <button class="w-full bg-black text-white font-black py-3 text-sm hover:bg-white hover:text-black border-2 border-black transition-colors uppercase" type="submit">立即订阅</button>
+        </form>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<footer class="bg-black text-white w-full py-12 border-t-8 border-black">
+  <div class="flex flex-col md:flex-row justify-between items-center gap-8 px-gutter max-w-container-max mx-auto">
+    <div class="flex flex-col items-center md:items-start gap-4">
+      <div class="text-headline-md font-black tracking-tighter uppercase">WINDY</div>
+      <p class="text-xs font-bold opacity-70">© 2026 WINDY · TECH JOURNAL</p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-6">
+      <a class="text-xs font-black uppercase hover:underline decoration-2" href="../index.html">首页</a>
+      <a class="text-xs font-black uppercase hover:underline decoration-2" href="../blog.html">博客</a>
+      <a class="text-xs font-black uppercase hover:underline decoration-2" href="https://github.com/abcdzyone/windy.github.io">源码</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
 </body>
 </html>

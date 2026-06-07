@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>关于 · WINDY Tech Journal</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { primary: '#000', 'on-primary': '#fff', 'on-surface-variant': '#4c4546' },
+          spacing: { gutter: '24px', 'stack-md': '1rem', 'stack-lg': '2rem', 'container-max': '1120px', 'section-gap': '5rem' },
+          fontFamily: { mono: ['JetBrains Mono', 'monospace'] },
+          fontSize: {
+            'headline-xl': ['48px', { lineHeight: '1.1', fontWeight: '800' }],
+            'headline-lg': ['32px', { fontWeight: '700' }],
+            'body-lg': ['18px', { lineHeight: '1.6' }],
+            'body-md': ['16px', { lineHeight: '1.5' }],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="font-mono text-body-md selection:bg-primary selection:text-white" style="background:#f9f9f9;background-image:radial-gradient(#d1d1d1 1px,transparent 1px);background-size:20px 20px;">
+
+<nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-sm border-b-3 border-black" data-header>
+  <div class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
+    <a href="index.html" class="text-2xl font-black uppercase tracking-tighter">WINDY</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a class="text-sm uppercase font-bold hover:underline decoration-4 underline-offset-4" href="index.html">首页</a>
+      <a class="text-sm uppercase font-bold hover:underline decoration-4 underline-offset-4" href="blog.html">博客</a>
+      <a class="text-sm uppercase font-bold bg-primary text-white px-3 py-1" href="about.html">关于</a>
+    </div>
+    <button id="theme-toggle" class="material-symbols-outlined hover:scale-110 transition-transform border-2 border-black p-1">dark_mode</button>
+  </div>
+</nav>
+
+<main class="pt-32 pb-section-gap px-gutter">
+
+  <section class="reading-track mb-section-gap">
+    <div class="mb-stack-lg">
+      <div class="halftone-shadow inline-block mb-8">
+        <img alt="Windy" class="w-32 h-32 border-4 border-black object-cover grayscale" src="https://avatars.githubusercontent.com/u/45551140?v=4" />
+      </div>
+      <h1 class="text-headline-xl text-primary mb-stack-md leading-tight uppercase">构建面向未来的 Web 工具</h1>
+      <p class="text-body-lg text-on-surface-variant border-l-4 border-black pl-6 italic">
+        独立开发者，痴迷于性能、清晰度与代码的结构之美。2020 起步，2023 入行——正在记录 Agent 时代软件开发的演变轨迹。
+      </p>
+    </div>
+    <div class="space-y-6 text-lg leading-relaxed">
+      <p>关注软件工程、人工智能与知识管理。相信技术与人文并不矛盾——好的代码应该像出版物一样，结构清晰、经得起时间检验。</p>
+      <p>日常探索 AI Agent 如何重塑开发范式，维护 Obsidian 知识库与开源 side project。当 IDE 关闭时，可能在山上徒步或冲一杯手冲咖啡。</p>
+    </div>
+  </section>
+
+  <section class="max-w-container-max mx-auto mb-section-gap">
+    <h2 class="text-xl font-bold mb-12 uppercase tracking-widest flex items-center gap-4">
+      <span class="h-1 w-12 bg-black"></span>技术栈<span class="h-1 flex-grow bg-black"></span>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="md:col-span-2 p-8 retro-card halftone-shadow">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-3xl">terminal</span>
+          <h3 class="text-2xl uppercase font-bold">核心工程</h3>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <span class="px-4 py-2 border-2 border-black font-bold text-sm bg-gray-100">TYPESCRIPT</span>
+          <span class="px-4 py-2 border-2 border-black font-bold text-sm bg-gray-100">PYTHON</span>
+          <span class="px-4 py-2 border-2 border-black font-bold text-sm bg-gray-100">NODE.JS</span>
+          <span class="px-4 py-2 border-2 border-black font-bold text-sm bg-gray-100">POSTGRESQL</span>
+          <span class="px-4 py-2 border-2 border-black font-bold text-sm bg-gray-100">DOCKER</span>
+        </div>
+      </div>
+      <div class="p-8 retro-card halftone-shadow">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-3xl">palette</span>
+          <h3 class="text-2xl uppercase font-bold">前端</h3>
+        </div>
+        <ul class="space-y-2 font-bold">
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-black"></span> React / Next.js</li>
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-black"></span> Tailwind CSS</li>
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-black"></span> HTML / CSS</li>
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-black"></span> Web Vitals</li>
+        </ul>
+      </div>
+      <div class="p-8 retro-card halftone-shadow">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-3xl">cloud</span>
+          <h3 class="text-2xl uppercase font-bold">运维</h3>
+        </div>
+        <ul class="space-y-2 font-bold">
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-black"></span> GitHub Pages</li>
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-black"></span> GitHub Actions</li>
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-black"></span> CI/CD</li>
+          <li class="flex items-center gap-2"><span class="w-2 h-2 bg-black"></span> Linux</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="reading-track mb-section-gap grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div class="p-8 border-4 border-black bg-white halftone-shadow">
+      <h3 class="text-xl uppercase mb-6 font-bold flex items-center gap-2">
+        <span class="material-symbols-outlined">bolt</span> 现在在做什么
+      </h3>
+      <ul class="space-y-4 font-bold">
+        <li class="flex items-start gap-3"><span class="material-symbols-outlined">arrow_forward</span>探索 MCP 协议与 Cursor Agent 工作流</li>
+        <li class="flex items-start gap-3"><span class="material-symbols-outlined">arrow_forward</span>重构个人站点为 DevJournal 半色调风格</li>
+        <li class="flex items-start gap-3"><span class="material-symbols-outlined">arrow_forward</span>阅读《设计数据密集型应用》</li>
+        <li class="flex items-start gap-3"><span class="material-symbols-outlined">arrow_forward</span>维护 Obsidian + Git 知识库</li>
+      </ul>
+    </div>
+    <div class="p-8 border-4 border-black bg-white">
+      <h3 class="text-xl uppercase mb-6 font-bold flex items-center gap-2">
+        <span class="material-symbols-outlined">timeline</span> 时间线
+      </h3>
+      <ol class="space-y-4 font-bold text-sm">
+        <li><span class="bg-black text-white px-2 py-0.5 mr-2">2026</span> AI Agent Lab · 站点重构</li>
+        <li><span class="bg-black text-white px-2 py-0.5 mr-2">2025</span> 深度使用 Cursor / Claude / GPT</li>
+        <li><span class="bg-black text-white px-2 py-0.5 mr-2">2024</span> 构建 Obsidian 知识管理系统</li>
+        <li><span class="bg-black text-white px-2 py-0.5 mr-2">2023</span> 进入软件行业</li>
+        <li><span class="bg-black text-white px-2 py-0.5 mr-2">2020</span> 系统学习编程，创建 GitHub</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="max-w-container-max mx-auto mb-section-gap">
+    <h2 class="text-xl font-bold mb-8 uppercase flex items-center gap-4">
+      <span class="h-1 w-12 bg-black"></span>阅读档案<span class="h-1 flex-grow bg-black"></span>
+    </h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div class="border-2 border-black p-4 bg-white"><h4 class="font-bold text-xs uppercase mb-2">技术</h4><ul class="text-xs space-y-1"><li>DDIA</li><li>CSAPP</li><li>Clean Code</li></ul></div>
+      <div class="border-2 border-black p-4 bg-white"><h4 class="font-bold text-xs uppercase mb-2">历史</h4><ul class="text-xs space-y-1"><li>人类简史</li><li>万历十五年</li></ul></div>
+      <div class="border-2 border-black p-4 bg-white"><h4 class="font-bold text-xs uppercase mb-2">哲学</h4><ul class="text-xs space-y-1"><li>沉思录</li><li>苏菲的世界</li></ul></div>
+      <div class="border-2 border-black p-4 bg-white"><h4 class="font-bold text-xs uppercase mb-2">商业</h4><ul class="text-xs space-y-1"><li>从 0 到 1</li><li>原则</li></ul></div>
+      <div class="border-2 border-black p-4 bg-white"><h4 class="font-bold text-xs uppercase mb-2">AI</h4><ul class="text-xs space-y-1"><li>Life 3.0</li><li>AI Superpowers</li></ul></div>
+      <div class="border-2 border-black p-4 bg-white"><h4 class="font-bold text-xs uppercase mb-2">其他</h4><ul class="text-xs space-y-1"><li>重构</li><li>创新者的窘境</li></ul></div>
+    </div>
+  </section>
+
+  <section class="reading-track text-center py-16 border-t-4 border-black border-dashed">
+    <h2 class="text-4xl font-bold mb-6 uppercase">联系我</h2>
+    <p class="font-bold mb-12 text-on-surface-variant">想聊聊架构、Agent 或知识管理？</p>
+    <div class="flex justify-center gap-12 flex-wrap">
+      <a class="group flex flex-col items-center gap-3" href="https://github.com/abcdzyone" target="_blank" rel="noopener">
+        <div class="w-16 h-16 flex items-center justify-center border-4 border-black bg-white group-hover:bg-primary transition-colors">
+          <span class="material-symbols-outlined text-2xl group-hover:text-white">code</span>
+        </div>
+        <span class="text-xs font-bold tracking-widest group-hover:underline">GITHUB</span>
+      </a>
+      <a class="group flex flex-col items-center gap-3" href="mailto:hello@windy.dev">
+        <div class="w-16 h-16 flex items-center justify-center border-4 border-black bg-white group-hover:bg-primary transition-colors">
+          <span class="material-symbols-outlined text-2xl group-hover:text-white">alternate_email</span>
+        </div>
+        <span class="text-xs font-bold tracking-widest group-hover:underline">EMAIL</span>
+      </a>
+      <a class="group flex flex-col items-center gap-3" href="blog.html">
+        <div class="w-16 h-16 flex items-center justify-center border-4 border-black bg-white group-hover:bg-primary transition-colors">
+          <span class="material-symbols-outlined text-2xl group-hover:text-white">article</span>
+        </div>
+        <span class="text-xs font-bold tracking-widest group-hover:underline">BLOG</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-black text-white py-12">
+  <div class="flex flex-col md:flex-row justify-between items-center gap-8 px-gutter max-w-container-max mx-auto uppercase tracking-wider text-sm">
+    <div class="text-xl font-black">WINDY</div>
+    <p class="opacity-80">© 2026 Windy · All systems functional.</p>
+    <div class="flex gap-8">
+      <a class="hover:opacity-70" href="blog.html">RSS</a>
+      <a class="hover:opacity-70" href="https://github.com/abcdzyone/windy.github.io">Source</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,66 +1,177 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html class="light" lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TypeScript 泛型：从入门到实践 · Digital Archive</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <title>TypeScript 泛型：从入门到实践 · WINDY</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/blog.css" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#000000',
+            'on-primary': '#ffffff',
+            surface: '#ffffff',
+            background: '#ffffff',
+            'on-surface': '#000000',
+            'on-background': '#000000',
+            outline: '#000000',
+          },
+          borderRadius: { DEFAULT: '0px', lg: '0px', xl: '0px' },
+          spacing: {
+            gutter: '24px',
+            'stack-sm': '0.5rem',
+            'stack-md': '1rem',
+            'stack-lg': '2rem',
+            'container-max': '1120px',
+            'section-gap': '5rem',
+            'content-max': '720px',
+          },
+          fontFamily: { mono: ['JetBrains Mono', 'monospace'] },
+          fontSize: {
+            display: ['48px', { lineHeight: '1.1', letterSpacing: '-0.04em', fontWeight: '800' }],
+            'headline-lg': ['32px', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
+            'headline-md': ['24px', { lineHeight: '1.3', fontWeight: '700' }],
+            'body-lg': ['18px', { lineHeight: '1.6' }],
+            'body-md': ['16px', { lineHeight: '1.5' }],
+            'label-caps': ['12px', { lineHeight: '1', letterSpacing: '0.05em', fontWeight: '700' }],
+          },
+        },
+      },
+    };
+  </script>
 </head>
-<body class="blog-page">
-  <div class="paper-grain" aria-hidden="true"></div>
+<body class="bg-background text-on-background font-mono halftone-page selection:bg-primary selection:text-on-primary">
 
-  <header class="blog-header">
-    <a href="../index.html" class="blog-logo">DIGITAL ARCHIVE.</a>
-    <a href="../index.html#writing" class="blog-nav-link">Articles</a>
-  </header>
+<header class="fixed top-0 w-full z-50 bg-surface border-b-4 border-outline transition-all duration-200" data-header>
+  <nav class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
+    <a href="../index.html" class="text-headline-md font-extrabold uppercase tracking-tighter">WINDY</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a class="text-label-caps hover:bg-primary hover:text-on-primary px-2 py-1 transition-colors" href="../index.html">首页</a>
+      <a class="text-label-caps bg-primary text-on-primary px-2 py-1" href="../blog.html">博客</a>
+      <a class="text-label-caps hover:bg-primary hover:text-on-primary px-2 py-1 transition-colors" href="../about.html">关于</a>
+    </div>
+    <div class="flex items-center gap-stack-md">
+      <button id="theme-toggle" class="p-2 border-2 border-outline hover:bg-primary hover:text-on-primary transition-colors" aria-label="切换主题">
+        <span class="material-symbols-outlined">contrast</span>
+      </button>
+      <button id="mobile-menu-btn" class="md:hidden p-2 border-2 border-outline">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </nav>
+  <div id="mobile-nav" class="hidden md:hidden border-t-2 border-outline bg-surface px-gutter py-4 space-y-2">
+    <a class="block text-label-caps py-2" href="../index.html">首页</a>
+    <a class="block text-label-caps py-2" href="../blog.html">博客</a>
+    <a class="block text-label-caps py-2" href="../about.html">关于</a>
+  </div>
+</header>
 
-  <main>
-    <article class="blog-article">
-      <a href="../index.html#writing" class="blog-back">← 返回文章列表</a>
-      <header>
-        <h1>TypeScript 泛型：从入门到实践</h1>
-        <div class="article-meta">
-          <time datetime="2026-04-28">2026-04-28</time>
-          <span>6 min read</span>
-          <div class="article-tags">
-            <span>TypeScript</span><span>类型系统</span>
+<div class="reading-progress" id="progress-bar"></div>
+
+<main class="mt-24 px-gutter pb-section-gap">
+  <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-[1fr_720px_1fr] gap-12">
+
+    <aside class="hidden lg:block" data-toc>
+      <div class="sticky top-32 stippled-box border-2 border-black p-6 shadow-hard">
+        <p class="text-label-caps font-black border-b-2 border-black mb-4 pb-2 uppercase">目录</p>
+        <ul class="space-y-4">
+            <li><a class="text-body-md font-bold hover:underline decoration-4" href="#basic-generics">01. 基础：类型参数</a></li>
+            <li><a class="text-body-md font-bold hover:underline decoration-4" href="#extends-constraint">02. 约束：extends</a></li>
+            <li><a class="text-body-md font-bold hover:underline decoration-4" href="#utility-types">03. 工具类型的思路</a></li>
+            <li><a class="text-body-md font-bold hover:underline decoration-4" href="#api-response">04. 实战：API 响应包装</a></li>
+            <li><a class="text-body-md font-bold hover:underline decoration-4" href="#common-mistakes">05. 常见误区</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <article class="max-w-[720px] mx-auto w-full">
+      <header class="mb-12">
+        <div class="flex flex-wrap items-center gap-4 mb-6">
+          <span class="bg-black text-white px-3 py-1 text-label-caps text-xs font-bold uppercase">TypeScript</span>
+          <time class="text-label-caps text-xs font-bold text-black/60" datetime="2026-04-28">2026.04.28</time>
+          <span class="text-label-caps border-2 border-black px-2 py-0.5 text-[10px] font-bold">#TypeScript</span>
+        </div>
+        <h1 class="text-headline-lg lg:text-display mb-8 leading-[1.05] tracking-tight uppercase">TypeScript 泛型：从入门到实践</h1>
+        <div class="flex items-center gap-4 border-y-2 border-black py-6">
+          <img class="w-12 h-12 grayscale border-2 border-black object-cover" alt="Windy" src="https://avatars.githubusercontent.com/u/45551140?v=4" />
+          <div>
+            <p class="font-bold text-lg uppercase leading-none">Windy</p>
+            <p class="text-sm font-medium mt-1">6 min read</p>
           </div>
         </div>
       </header>
-      <div class="blog-content">
+
+      <div class="prose-blog">
         <p>泛型让类型像参数一样传递，在保持类型安全的同时避免重复定义。它是 TypeScript 从「能写类型」到「会设计类型」的分水岭。</p>
 
-        <h2>基础：类型参数</h2>
-        <pre><code>function first&lt;T&gt;(arr: T[]): T | undefined {
+        <h2 id="basic-generics">基础：类型参数</h2>
+        <div class="my-10 relative group border-4 border-black shadow-hard overflow-hidden" data-code-block>
+          <div class="bg-black text-white px-4 py-2 flex justify-between items-center border-b-2 border-black">
+            <span class="text-xs font-bold tracking-widest">CODE</span>
+            <button type="button" class="flex items-center gap-2 hover:bg-white hover:text-black px-2 py-0.5 transition-colors border border-transparent hover:border-black" onclick="copyCode(this)">
+              <span class="material-symbols-outlined text-sm">content_copy</span>
+              <span class="text-[10px] font-black" data-copy-label>复制</span>
+            </button>
+          </div>
+          <pre class="bg-white text-black p-6 font-mono text-sm overflow-x-auto m-0 border-0"><code>function first&lt;T&gt;(arr: T[]): T | undefined {
   return arr[0];
 }
 
 const n = first([1, 2, 3]);     // number | undefined
 const s = first(['a', 'b']);    // string | undefined</code></pre>
+        </div>
         <p>编译器根据实参推断 <code>T</code>，一处定义，多种类型复用。</p>
 
-        <h2>约束：extends</h2>
+        <h2 id="extends-constraint">约束：extends</h2>
         <p>并非所有类型都有 <code>.length</code>。用 <code>extends</code> 限定上界：</p>
-        <pre><code>function logLength&lt;T extends { length: number }&gt;(val: T): void {
+        <div class="my-10 relative group border-4 border-black shadow-hard overflow-hidden" data-code-block>
+          <div class="bg-black text-white px-4 py-2 flex justify-between items-center border-b-2 border-black">
+            <span class="text-xs font-bold tracking-widest">CODE</span>
+            <button type="button" class="flex items-center gap-2 hover:bg-white hover:text-black px-2 py-0.5 transition-colors border border-transparent hover:border-black" onclick="copyCode(this)">
+              <span class="material-symbols-outlined text-sm">content_copy</span>
+              <span class="text-[10px] font-black" data-copy-label>复制</span>
+            </button>
+          </div>
+          <pre class="bg-white text-black p-6 font-mono text-sm overflow-x-auto m-0 border-0"><code>function logLength&lt;T extends { length: number }&gt;(val: T): void {
   console.log(val.length);
 }
 
 logLength('hello');   // OK
 logLength(42);        // Error</code></pre>
+        </div>
 
-        <h2>工具类型的思路</h2>
+        <h2 id="utility-types">工具类型的思路</h2>
         <p>内置的 <code>Partial&lt;T&gt;</code>、<code>Pick&lt;T, K&gt;</code>、<code>Omit&lt;T, K&gt;</code> 都是泛型 + 映射类型的组合。理解 <code>keyof</code> 和条件类型后，你可以自己写：</p>
-        <pre><code>type Optional&lt;T, K extends keyof T&gt; = Omit&lt;T, K&gt; & Partial&lt;Pick&lt;T, K&gt;&gt;;
+        <div class="my-10 relative group border-4 border-black shadow-hard overflow-hidden" data-code-block>
+          <div class="bg-black text-white px-4 py-2 flex justify-between items-center border-b-2 border-black">
+            <span class="text-xs font-bold tracking-widest">CODE</span>
+            <button type="button" class="flex items-center gap-2 hover:bg-white hover:text-black px-2 py-0.5 transition-colors border border-transparent hover:border-black" onclick="copyCode(this)">
+              <span class="material-symbols-outlined text-sm">content_copy</span>
+              <span class="text-[10px] font-black" data-copy-label>复制</span>
+            </button>
+          </div>
+          <pre class="bg-white text-black p-6 font-mono text-sm overflow-x-auto m-0 border-0"><code>type Optional&lt;T, K extends keyof T&gt; = Omit&lt;T, K&gt; & Partial&lt;Pick&lt;T, K&gt;&gt;;
 
 interface User { id: number; name: string; email: string; }
 type UserPatch = Optional&lt;User, 'email'&gt;;</code></pre>
+        </div>
 
-        <h2>实战：API 响应包装</h2>
-        <pre><code>interface ApiResponse&lt;T&gt; {
+        <h2 id="api-response">实战：API 响应包装</h2>
+        <div class="my-10 relative group border-4 border-black shadow-hard overflow-hidden" data-code-block>
+          <div class="bg-black text-white px-4 py-2 flex justify-between items-center border-b-2 border-black">
+            <span class="text-xs font-bold tracking-widest">CODE</span>
+            <button type="button" class="flex items-center gap-2 hover:bg-white hover:text-black px-2 py-0.5 transition-colors border border-transparent hover:border-black" onclick="copyCode(this)">
+              <span class="material-symbols-outlined text-sm">content_copy</span>
+              <span class="text-[10px] font-black" data-copy-label>复制</span>
+            </button>
+          </div>
+          <pre class="bg-white text-black p-6 font-mono text-sm overflow-x-auto m-0 border-0"><code>interface ApiResponse&lt;T&gt; {
   code: number;
   data: T;
   message: string;
@@ -70,25 +181,62 @@ async function fetchUser(id: string): Promise&lt;ApiResponse&lt;User&gt;&gt; {
   const res = await fetch(`/api/users/${id}`);
   return res.json();
 }</code></pre>
+        </div>
         <p>前后端约定统一响应结构，泛型让 <code>data</code> 的类型随接口变化，IDE 自动补全不会丢。</p>
 
-        <h2>常见误区</h2>
+        <h2 id="common-mistakes">常见误区</h2>
         <ul>
           <li>过度泛型化：简单函数不必强行加 <code>&lt;T&gt;</code></li>
           <li>滥用 <code>any</code> 作为泛型默认值，会吞掉类型检查</li>
           <li>复杂条件类型可读性差，适当拆成 type alias</li>
         </ul>
       </div>
-      <nav class="article-nav">
-        <a href="js-event-loop.html">← 事件循环</a>
-        <a href="github-pages-guide.html" class="next">GitHub Pages 指南 →</a>
-      </nav>
-    </article>
-  </main>
 
-  <footer class="blog-footer">
-    <p class="blog-footer-title">DIGITAL ARCHIVE.</p>
-    <p class="blog-footer-copy">© 2026 Windy</p>
-  </footer>
+      <section class="mt-24 pt-12 border-t-4 border-black">
+        <h3 class="text-headline-md mb-8 uppercase tracking-tighter">相关文章</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <a class="group block border-4 border-black p-6 hover:translate-x-1 hover:translate-y-1 hover:shadow-none shadow-hard transition-all duration-100 bg-white" href="js-event-loop.html">
+            <span class="bg-black text-white px-2 py-0.5 text-[10px] font-black uppercase">JavaScript</span>
+            <h4 class="font-bold text-xl mt-3 mb-2 group-hover:underline uppercase leading-tight">深入理解 JavaScript 事件循环</h4>
+            <p class="text-sm font-medium line-clamp-2">调用栈、微任务与宏任务的执行顺序...</p>
+          </a>
+          <a class="group block border-4 border-black p-6 hover:translate-x-1 hover:translate-y-1 hover:shadow-none shadow-hard transition-all duration-100 bg-white" href="docker-frontend.html">
+            <span class="bg-black text-white px-2 py-0.5 text-[10px] font-black uppercase">Docker</span>
+            <h4 class="font-bold text-xl mt-3 mb-2 group-hover:underline uppercase leading-tight">Docker 入门：前端开发者视角</h4>
+            <p class="text-sm font-medium line-clamp-2">多阶段构建与前端工程化部署实践...</p>
+          </a>
+        </div>
+      </section>
+    </article>
+
+    <aside class="hidden lg:block">
+      <div class="sticky top-32 stippled-box border-2 border-black p-6 shadow-hard bg-white">
+        <p class="text-label-caps text-xs font-black mb-2 uppercase border-b-2 border-black pb-1">订阅</p>
+        <p class="text-sm font-bold mb-6">每周技术摘要，直达收件箱。</p>
+        <form class="space-y-4" data-newsletter>
+          <input class="w-full bg-white border-2 border-black p-3 text-sm font-bold focus:bg-black focus:text-white transition-all outline-none placeholder:text-black/50" placeholder="EMAIL" type="email" required />
+          <button class="w-full bg-black text-white font-black py-3 text-sm hover:bg-white hover:text-black border-2 border-black transition-colors uppercase" type="submit">立即订阅</button>
+        </form>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<footer class="bg-black text-white w-full py-12 border-t-8 border-black">
+  <div class="flex flex-col md:flex-row justify-between items-center gap-8 px-gutter max-w-container-max mx-auto">
+    <div class="flex flex-col items-center md:items-start gap-4">
+      <div class="text-headline-md font-black tracking-tighter uppercase">WINDY</div>
+      <p class="text-xs font-bold opacity-70">© 2026 WINDY · TECH JOURNAL</p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-6">
+      <a class="text-xs font-black uppercase hover:underline decoration-2" href="../index.html">首页</a>
+      <a class="text-xs font-black uppercase hover:underline decoration-2" href="../blog.html">博客</a>
+      <a class="text-xs font-black uppercase hover:underline decoration-2" href="https://github.com/abcdzyone/windy.github.io">源码</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
 </body>
 </html>
