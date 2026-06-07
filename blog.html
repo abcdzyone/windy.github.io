@@ -6,7 +6,6 @@
   <title>博客 · WINDY Tech Journal</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <script>
     tailwind.config = {
@@ -16,7 +15,7 @@
           colors: { primary: '#000', 'on-primary': '#fff', surface: '#fff', 'on-surface': '#000', outline: '#000' },
           borderRadius: { DEFAULT: '0px' },
           spacing: { gutter: '24px', 'stack-md': '1rem', 'stack-lg': '2rem' },
-          fontFamily: { mono: ['JetBrains Mono', 'monospace'] },
+          fontFamily: { sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'sans-serif'], mono: ['SF Mono', 'Menlo', 'Monaco', 'Consolas', 'monospace'] },
           fontSize: {
             'headline-xl': ['48px', { lineHeight: '1.1', fontWeight: '800' }],
             'headline-lg': ['32px', { lineHeight: '1.2', fontWeight: '700' }],
@@ -29,7 +28,7 @@
     };
   </script>
 </head>
-<body class="font-mono text-on-surface halftone-page">
+<body class="text-on-surface halftone-page">
 
 <header class="fixed top-0 w-full z-50 bg-white border-b-4 border-black" data-header>
   <div class="flex justify-between items-center h-16 px-gutter max-w-[1200px] mx-auto">
@@ -50,6 +49,11 @@
     <div class="mb-12">
       <h1 class="text-headline-xl mb-4 bg-white inline-block px-4 border-4 border-black">全部文章</h1>
       <p class="text-body-lg bg-white p-4 border-2 border-black max-w-[800px]">工程实践、AI 探索与知识管理——为现代开发者记录的技术故事。</p>
+      <div class="flex flex-wrap gap-4 mt-6">
+        <span class="border-2 border-black bg-white px-4 py-2 font-bold text-sm">共 12 篇</span>
+        <span class="border-2 border-black bg-black text-white px-4 py-2 font-bold text-sm">本月 +2</span>
+        <span class="border-2 border-black bg-white px-4 py-2 font-bold text-sm">累计阅读 18.4k</span>
+      </div>
     </div>
 
     <div class="flex flex-col lg:flex-row gap-8">
@@ -164,6 +168,40 @@
             <p class="text-body-md line-clamp-2">分支策略、PR 规范与 CI 集成——小团队的高效协作模式。</p>
             <span class="flex items-center gap-2 text-label-bold uppercase border-b-4 border-black w-fit">阅读全文 <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
           </a>
+        </article>
+
+        <article class="article-card group heavy-border p-6 opacity-80" data-article>
+          <div class="flex flex-col gap-4">
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="text-label-bold bg-black text-white px-3 py-1">2026.01.22</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 bg-black text-white">#MCP</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 bg-black text-white">#PROTOCOL</span>
+            </div>
+            <h2 class="text-headline-lg uppercase p-1">MCP 协议初探：让 Agent 安全调用外部工具</h2>
+            <p class="text-body-md line-clamp-2">从架构设计到实战集成——如何为 Cursor Agent 构建可扩展的工具层。（即将发布）</p>
+          </div>
+        </article>
+
+        <article class="article-card group heavy-border p-6 opacity-80" data-article>
+          <div class="flex flex-col gap-4">
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="text-label-bold bg-black text-white px-3 py-1">2026.01.10</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 bg-black text-white">#SYSTEM</span>
+            </div>
+            <h2 class="text-headline-lg uppercase p-1">分布式日志系统设计笔记</h2>
+            <p class="text-body-md line-clamp-2">高吞吐场景下的采集、缓冲与检索架构草案。（草稿）</p>
+          </div>
+        </article>
+
+        <article class="article-card group heavy-border p-6 opacity-80" data-article>
+          <div class="flex flex-col gap-4">
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="text-label-bold bg-black text-white px-3 py-1">2025.12.28</span>
+              <span class="text-label-bold border-2 border-black px-2 py-0.5 bg-black text-white">#REVIEW</span>
+            </div>
+            <h2 class="text-headline-lg uppercase p-1">2025 年度技术复盘：AI、工程与阅读</h2>
+            <p class="text-body-md line-clamp-2">一年开发实践、12 本书与 3 个 side project 的总结。（即将发布）</p>
+          </div>
         </article>
 
         <div class="pt-12 flex justify-center">

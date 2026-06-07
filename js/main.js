@@ -38,17 +38,22 @@
     });
   }
 
-  // Copy code blocks
+  // Copy code blocks (article_detail.html pattern)
   window.copyCode = function (btn) {
-    var block = btn.closest('[data-code-block]');
+    var block = btn.closest('[data-code-block]') || btn.closest('.border-4');
     if (!block) return;
-    var code = block.querySelector('code').innerText;
-    navigator.clipboard.writeText(code).then(function () {
-      var label = btn.querySelector('[data-copy-label]');
+    var codeEl = block.querySelector('code');
+    if (!codeEl) return;
+    navigator.clipboard.writeText(codeEl.innerText).then(function () {
+      var label = btn.querySelector('[data-copy-label]') || btn.querySelector('.font-black');
       if (label) {
         var orig = label.innerText;
         label.innerText = '已复制';
-        setTimeout(function () { label.innerText = orig; }, 2000);
+        btn.classList.add('bg-white', 'text-black');
+        setTimeout(function () {
+          label.innerText = orig;
+          btn.classList.remove('bg-white', 'text-black');
+        }, 2000);
       }
     });
   };
@@ -86,16 +91,6 @@
     });
   }
 
-  // Retro card hover
-  document.querySelectorAll('.retro-card').forEach(function (card) {
-    card.addEventListener('mouseenter', function () {
-      card.style.transform = 'translate(-4px, -4px)';
-      card.style.transition = 'transform 0.1s ease-out';
-    });
-    card.addEventListener('mouseleave', function () {
-      card.style.transform = 'translate(0, 0)';
-    });
-  });
 
   // Newsletter form mock
   document.querySelectorAll('[data-newsletter]').forEach(function (form) {

@@ -32,7 +32,7 @@
             'section-gap': '5rem',
             'content-max': '720px',
           },
-          fontFamily: { mono: ['JetBrains Mono', 'monospace'] },
+          fontFamily: { sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'sans-serif'], mono: ['SF Mono', 'Menlo', 'Monaco', 'Consolas', 'monospace'] },
           fontSize: {
             display: ['48px', { lineHeight: '1.1', letterSpacing: '-0.04em', fontWeight: '800' }],
             'headline-lg': ['32px', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
@@ -46,31 +46,19 @@
     };
   </script>
 </head>
-<body class="bg-background text-on-background font-mono halftone-page selection:bg-primary selection:text-on-primary">
+<body class="bg-background text-on-background halftone-page selection:bg-primary selection:text-on-primary">
 
-<header class="fixed top-0 w-full z-50 bg-surface border-b-4 border-outline transition-all duration-200" data-header>
-  <nav class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
-    <a href="../index.html" class="text-headline-md font-extrabold uppercase tracking-tighter">WINDY</a>
-    <div class="hidden md:flex items-center gap-8">
-      <a class="text-label-caps hover:bg-primary hover:text-on-primary px-2 py-1 transition-colors" href="../index.html">首页</a>
-      <a class="text-label-caps bg-primary text-on-primary px-2 py-1" href="../blog.html">博客</a>
-      <a class="text-label-caps hover:bg-primary hover:text-on-primary px-2 py-1 transition-colors" href="../about.html">关于</a>
-    </div>
-    <div class="flex items-center gap-stack-md">
-      <button id="theme-toggle" class="p-2 border-2 border-outline hover:bg-primary hover:text-on-primary transition-colors" aria-label="切换主题">
-        <span class="material-symbols-outlined">contrast</span>
-      </button>
-      <button id="mobile-menu-btn" class="md:hidden p-2 border-2 border-outline">
-        <span class="material-symbols-outlined">menu</span>
-      </button>
-    </div>
-  </nav>
-  <div id="mobile-nav" class="hidden md:hidden border-t-2 border-outline bg-surface px-gutter py-4 space-y-2">
-    <a class="block text-label-caps py-2" href="../index.html">首页</a>
-    <a class="block text-label-caps py-2" href="../blog.html">博客</a>
-    <a class="block text-label-caps py-2" href="../about.html">关于</a>
-  </div>
-</header>
+<nav class="fixed top-0 w-full z-50 bg-white border-b-4 border-black transition-all duration-200 ease-in-out" data-header>
+<div class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
+<a href="../index.html" class="text-headline-md font-extrabold tracking-tighter uppercase">WINDY</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-label-caps hover:bg-black hover:text-white px-2 py-1 transition-colors" href="../index.html">首页</a>
+<a class="text-label-caps bg-black text-white px-2 py-1" href="../blog.html">博客</a>
+<a class="text-label-caps hover:bg-black hover:text-white px-2 py-1 transition-colors" href="../about.html">关于</a>
+</div>
+<button id="theme-toggle" class="material-symbols-outlined p-1 border-2 border-black hover:bg-black hover:text-white transition-all">dark_mode</button>
+</div>
+</nav>
 
 <div class="reading-progress" id="progress-bar"></div>
 
@@ -78,7 +66,7 @@
   <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-[1fr_720px_1fr] gap-12">
 
     <aside class="hidden lg:block" data-toc>
-      <div class="sticky top-32 stippled-box border-2 border-black p-6 shadow-hard">
+      <div class="sticky top-32 stippled-box bold-border p-6 shadow-hard">
         <p class="text-label-caps font-black border-b-2 border-black mb-4 pb-2 uppercase">目录</p>
         <ul class="space-y-4">
             <li><a class="text-body-md font-bold hover:underline decoration-4" href="#basic-generics">01. 基础：类型参数</a></li>
@@ -90,7 +78,7 @@
       </div>
     </aside>
 
-    <article class="max-w-[720px] mx-auto w-full">
+    <article class="max-w-content-max mx-auto bg-white p-8 w-full">
       <header class="mb-12">
         <div class="flex flex-wrap items-center gap-4 mb-6">
           <span class="bg-black text-white px-3 py-1 text-label-caps text-xs font-bold uppercase">TypeScript</span>
@@ -193,14 +181,16 @@ async function fetchUser(id: string): Promise&lt;ApiResponse&lt;User&gt;&gt; {
       </div>
 
       <section class="mt-24 pt-12 border-t-4 border-black">
-        <h3 class="text-headline-md mb-8 uppercase tracking-tighter">相关文章</h3>
+        <h3 class="text-headline-md mb-8 uppercase tracking-tighter">相关日志</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <a class="group block border-4 border-black p-6 hover:translate-x-1 hover:translate-y-1 hover:shadow-none shadow-hard transition-all duration-100 bg-white" href="js-event-loop.html">
+            <img class="w-full h-40 object-cover grayscale border-2 border-black mb-4" alt="" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=240&fit=crop&q=80" />
             <span class="bg-black text-white px-2 py-0.5 text-[10px] font-black uppercase">JavaScript</span>
             <h4 class="font-bold text-xl mt-3 mb-2 group-hover:underline uppercase leading-tight">深入理解 JavaScript 事件循环</h4>
             <p class="text-sm font-medium line-clamp-2">调用栈、微任务与宏任务的执行顺序...</p>
           </a>
           <a class="group block border-4 border-black p-6 hover:translate-x-1 hover:translate-y-1 hover:shadow-none shadow-hard transition-all duration-100 bg-white" href="docker-frontend.html">
+            <img class="w-full h-40 object-cover grayscale border-2 border-black mb-4" alt="" src="https://images.unsplash.com/photo-1517694712202-14dd9538a904?w=600&h=240&fit=crop&q=80" />
             <span class="bg-black text-white px-2 py-0.5 text-[10px] font-black uppercase">Docker</span>
             <h4 class="font-bold text-xl mt-3 mb-2 group-hover:underline uppercase leading-tight">Docker 入门：前端开发者视角</h4>
             <p class="text-sm font-medium line-clamp-2">多阶段构建与前端工程化部署实践...</p>
@@ -210,7 +200,7 @@ async function fetchUser(id: string): Promise&lt;ApiResponse&lt;User&gt;&gt; {
     </article>
 
     <aside class="hidden lg:block">
-      <div class="sticky top-32 stippled-box border-2 border-black p-6 shadow-hard bg-white">
+      <div class="sticky top-32 stippled-box bold-border p-6 shadow-hard bg-white">
         <p class="text-label-caps text-xs font-black mb-2 uppercase border-b-2 border-black pb-1">订阅</p>
         <p class="text-sm font-bold mb-6">每周技术摘要，直达收件箱。</p>
         <form class="space-y-4" data-newsletter>

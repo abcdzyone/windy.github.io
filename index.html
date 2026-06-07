@@ -7,7 +7,6 @@
   <title>WINDY · Tech Journal</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <script>
     tailwind.config = {
@@ -32,7 +31,7 @@
             'container-max': '1120px',
             'section-gap': '5rem',
           },
-          fontFamily: { mono: ['JetBrains Mono', 'monospace'] },
+          fontFamily: { sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'sans-serif'], mono: ['SF Mono', 'Menlo', 'Monaco', 'Consolas', 'monospace'] },
           fontSize: {
             display: ['48px', { lineHeight: '1.1', letterSpacing: '-0.04em', fontWeight: '800' }],
             'headline-lg': ['32px', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
@@ -46,7 +45,7 @@
     };
   </script>
 </head>
-<body class="bg-background text-on-background font-mono selection:bg-primary selection:text-on-primary">
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary">
 
 <header class="fixed top-0 w-full z-50 bg-surface border-b-4 border-outline transition-all duration-200" data-header>
   <nav class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
@@ -86,6 +85,12 @@
       <div class="flex flex-wrap gap-stack-md">
         <a href="blog/agents-changing-dev.html" class="bg-primary text-on-primary px-6 py-3 font-bold uppercase border-2 border-primary hover:bg-surface hover:text-on-surface transition-colors">最新文章</a>
         <a href="about.html" class="border-2 border-outline px-6 py-3 font-bold uppercase hover:bg-primary hover:text-on-primary transition-colors">关于我</a>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-stack-lg relative z-10">
+        <div class="border-2 border-outline p-3 bg-surface text-center"><p class="text-2xl font-black">9</p><p class="text-[10px] font-bold uppercase">文章</p></div>
+        <div class="border-2 border-outline p-3 bg-surface text-center"><p class="text-2xl font-black">6</p><p class="text-[10px] font-bold uppercase">项目</p></div>
+        <div class="border-2 border-outline p-3 bg-surface text-center"><p class="text-2xl font-black">1.2k</p><p class="text-[10px] font-bold uppercase">Stars</p></div>
+        <div class="border-2 border-outline p-3 bg-surface text-center"><p class="text-2xl font-black">4.8k</p><p class="text-[10px] font-bold uppercase">读者/月</p></div>
       </div>
     </div>
   </section>
@@ -229,10 +234,34 @@ async function runAgent(task: Task) {
               <div class="w-8 h-8 border-2 border-outline bg-surface flex items-center justify-center">
                 <span class="material-symbols-outlined text-[18px]">menu_book</span>
               </div>
+              <div class="w-1 flex-1 bg-outline mt-2 min-h-[2rem]"></div>
             </div>
-            <div>
+            <div class="pb-stack-md">
               <span class="font-bold text-[11px] bg-outline text-surface px-1">1 周前</span>
               <p class="text-body-md mt-1">读完 <span class="font-bold">Designing Data-Intensive Applications</span> 第三章</p>
+            </div>
+          </li>
+          <li class="flex gap-stack-md">
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 border-2 border-outline bg-surface flex items-center justify-center">
+                <span class="material-symbols-outlined text-[18px]">star</span>
+              </div>
+              <div class="w-1 flex-1 bg-outline mt-2 min-h-[2rem]"></div>
+            </div>
+            <div class="pb-stack-md">
+              <span class="font-bold text-[11px] bg-outline text-surface px-1">2 周前</span>
+              <p class="text-body-md mt-1">开源项目 <span class="font-bold">obsidian-sync-cli</span> 突破 45 stars</p>
+            </div>
+          </li>
+          <li class="flex gap-stack-md">
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 border-2 border-outline bg-surface flex items-center justify-center">
+                <span class="material-symbols-outlined text-[18px]">podcasts</span>
+              </div>
+            </div>
+            <div>
+              <span class="font-bold text-[11px] bg-outline text-surface px-1">3 周前</span>
+              <p class="text-body-md mt-1">订阅者突破 <span class="bg-black text-white px-1">500+</span>，发送第 12 期周刊</p>
             </div>
           </li>
         </ul>
@@ -261,6 +290,24 @@ async function runAgent(task: Task) {
         <h3 class="font-bold text-lg mt-2 uppercase">Automation Toolkit</h3>
         <p class="text-sm mt-2">Git 工作流脚本、CI 模板与批处理工具链。</p>
         <span class="text-[10px] font-bold mt-4 inline-block border border-outline px-2 py-0.5">DEVOPS</span>
+      </article>
+      <article class="border-4 border-outline p-stack-md hover:shadow-[8px_8px_0_0_#000] transition-shadow">
+        <span class="text-[10px] font-bold bg-primary text-on-primary px-2 py-0.5">04</span>
+        <h3 class="font-bold text-lg mt-2 uppercase">obsidian-sync-cli</h3>
+        <p class="text-sm mt-2">Vault 自动 Git 同步，支持 hooks 与冲突检测。</p>
+        <span class="text-[10px] font-bold mt-4 inline-block border border-outline px-2 py-0.5">PKM · CLI</span>
+      </article>
+      <article class="border-4 border-outline p-stack-md hover:shadow-[8px_8px_0_0_#000] transition-shadow">
+        <span class="text-[10px] font-bold bg-primary text-on-primary px-2 py-0.5">05</span>
+        <h3 class="font-bold text-lg mt-2 uppercase">Free-V2ray-Config</h3>
+        <p class="text-sm mt-2">开源网络配置集合，234 stars 社区维护。</p>
+        <span class="text-[10px] font-bold mt-4 inline-block border border-outline px-2 py-0.5">OPEN SOURCE</span>
+      </article>
+      <article class="border-4 border-outline p-stack-md hover:shadow-[8px_8px_0_0_#000] transition-shadow">
+        <span class="text-[10px] font-bold bg-primary text-on-primary px-2 py-0.5">06</span>
+        <h3 class="font-bold text-lg mt-2 uppercase">readme-sync-hook</h3>
+        <p class="text-sm mt-2">代码变更后自动同步 README 的 Cursor hook。</p>
+        <span class="text-[10px] font-bold mt-4 inline-block border border-outline px-2 py-0.5">WIP · AI</span>
       </article>
     </div>
   </section>
