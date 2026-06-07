@@ -54,41 +54,59 @@
     return res.json();
   }
 
+  async function reverseGeocode(lat, lon) {
+    try {
+      const data = await fetchJson(
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=zh`
+      );
+      const label = [data.city || data.locality, data.principalSubdivision, data.countryName]
+        .filter(Boolean)
+        .join(' · ');
+      if (label) return label;
+    } catch {
+      /* fallback below */
+    }
+    const latStr = `${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'}`;
+    const lonStr = `${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}`;
+    return `${latStr}, ${lonStr}`;
+  }
+
+  function updateSunFoot() {
+    const foot = document.querySelector('#card-sun .live-foot');
+    if (foot && coords.name) foot.textContent = `今日 ${coords.name}`;
+  }
+
   async function resolveLocation() {
     const locEl = $('live-location');
     const setLoc = (text) => { if (locEl) locEl.textContent = text; };
 
-    const applyCoords = async (lat, lon, fallbackName) => {
-      coords = { lat, lon, name: fallbackName || '' };
-      try {
-        const geo = await fetchJson(
-          `https://geocoding-api.open-meteo.com/v1/reverse?latitude=${lat}&longitude=${lon}&language=zh`
-        );
-        const place = geo.results?.[0];
-        coords.name = place
-          ? [place.name, place.admin1, place.country].filter(Boolean).join(' · ')
-          : fallbackName || `${lat.toFixed(2)}, ${lon.toFixed(2)}`;
-      } catch {
-        coords.name = fallbackName || DEFAULT.name;
+    const useCoords = (lat, lon, label, suffix, geocode) => {
+      coords = { lat, lon, name: label || '' };
+      if (label) {
+        setLoc(`当前位置：${label}${suffix}`);
+        return;
       }
-      setLoc(`当前位置：${coords.name}`);
+      setLoc('当前位置：定位中…');
+      geocode(lat, lon).then((name) => {
+        coords.name = name;
+        setLoc(`当前位置：${name}${suffix}`);
+        updateSunFoot();
+      });
     };
 
     if (!navigator.geolocation) {
-      await applyCoords(DEFAULT.lat, DEFAULT.lon, DEFAULT.name);
-      setLoc(`当前位置：${coords.name}（默认）`);
+      useCoords(DEFAULT.lat, DEFAULT.lon, DEFAULT.name, '（默认）', reverseGeocode);
       return;
     }
 
     return new Promise((resolve) => {
       navigator.geolocation.getCurrentPosition(
-        async (pos) => {
-          await applyCoords(pos.coords.latitude, pos.coords.longitude);
+        (pos) => {
+          useCoords(pos.coords.latitude, pos.coords.longitude, '', '', reverseGeocode);
           resolve();
         },
-        async () => {
-          await applyCoords(DEFAULT.lat, DEFAULT.lon, DEFAULT.name);
-          setLoc(`当前位置：${coords.name}（定位未授权，使用默认）`);
+        () => {
+          useCoords(DEFAULT.lat, DEFAULT.lon, DEFAULT.name, '（定位未授权，使用默认）', reverseGeocode);
           resolve();
         },
         { timeout: 8000, maximumAge: 300000 }
